@@ -1,0 +1,27 @@
+!!! 5
+html(lang="es-PE")
+ head
+   meta(charset="utf-8")
+   title Inicio
+   link(rel="stylesheet",href="style.css")
+   script(type='text/javascript',src="webrtc.io.js")
+   script(type='text/javascript', src='/socket.io/socket.io.js')
+ body
+  div#videos
+    a(href="https://github.com/webRTC")
+      img(src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png", style="position: absolute; top: 0; right: 0; border: 0;", alt="Fork me on GitHub")
+    video(id="you", class="flip", autoplay, width="263", height="200", style="position: absolute; left: 0px; bottom: 0px;")
+  div#pizarra
+    canvas#canvas(width='420', height='400')
+    | Tu Navegador no acepta canvas.
+    form
+     input#clean(type='button', value='Limpiame!!')
+  div#chatbox
+    div(class="button",id="hideShowMessages")|toggle chat
+    div#messages
+    input#chatinput(type="text",placeholder="Message:")
+  div.buttonBox
+    div(id="fullscreen", class="button")|Enter fullscreen
+    div(id="newRoom", class="button")|Create A New Room
+  script(src="script.js")
+  script(type='text/javascript', src='script_pizarra.js')
