@@ -49,7 +49,9 @@ function canvasApp() {
 			context.strokeStyle = "#fff";
 			context.lineCap = "round";
 			context.lineWidth = 2;
-			context.moveTo(e.clientX - theCanvas.offsetLeft, e.clientY - theCanvas.offsetTop);
+				var x = e.pageX||e.clientX - theCanvas.offsetLeft,
+								y = e.pageY||e.clientY - theCanvas.offsetTop;
+			context.moveTo(x, y);
 		}
 
 		//Se termina el trazo.
@@ -59,8 +61,9 @@ function canvasApp() {
 
 		//Dibujamos el trazo recibiendo la posición actual del ratón.
 		function draw(e){
-
-			context.lineTo(e.clientX - theCanvas.offsetLeft, e.clientY - theCanvas.offsetTop);
+				var x = e.pageX||e.clientX - theCanvas.offsetLeft,
+								y = e.pageY||e.clientY - theCanvas.offsetTop;
+			context.lineTo(x,y);
 			context.stroke();
 
 		}
@@ -79,9 +82,10 @@ function canvasApp() {
 
 			//Al clickar en la pizarra enviamos el punto de inicio del trazo
 			theCanvas.addEventListener("mousedown",function(e){
-				
+				var x = e.pageX||e.clientX,
+								y = e.pageY||e.clientY;
 				if(!block){
-					socket.emit('startLine',{clientX : e.clientX, clientY : e.clientY});
+					socket.emit('startLine',{clientX : x, clientY : y});
 					click = true;
 					startLine(e);
 				}
@@ -90,9 +94,10 @@ function canvasApp() {
 
 			//Al soltar el click (dentro o fuera del canvas) enviamos orden de terminar el trazo
 			window.addEventListener("mouseup",function(e){
-				
+				var x = e.pageX||e.clientX,
+								y = e.pageY||e.clientY;
 				if(!block){
-					socket.emit('closeLine',{clientX : e.clientX, clientY : e.clientY});
+					socket.emit('closeLine',{clientX : x, clientY : y});
 					click = false;
 					closeLine(e);
 				}
@@ -101,10 +106,11 @@ function canvasApp() {
 
 			//Al mover el ratón mientras esta clickado enviamos coordenadas donde continuar el trazo.
 			theCanvas.addEventListener("mousemove",function(e){
-
+					var x = e.pageX||e.clientX,
+					y = e.pageY||e.clientY;
 				if(click){
 					if(!block){
-						socket.emit('draw',{clientX : e.clientX, clientY : e.clientY});
+						socket.emit('draw',{clientX : x, clientY : y});
 						draw(e);
 					}
 				}

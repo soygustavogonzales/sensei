@@ -58,11 +58,12 @@ body {
   border: 1px solid #CCCCCC;
   border-radius: 5px 5px 0px 0px;
   font: 300 18px/40px 'light','Helvetica Neue',Arial,Helvetica,sans-serif;
-  height: 400px;
+  height: 100px;
   letter-spacing: 1px;
   margin-bottom: 0px;
   padding: 5px 10px;
   width: 255px;
+  display: none;
 }
 
 .flip {
