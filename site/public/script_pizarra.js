@@ -6,6 +6,7 @@ window.onload = function(){
 
 }
 
+var l = console;
 //Comprobamos mediante la librería moderniz que el navegador soporta canvas
 function canvasSupport(){
 	var canvas = document.createElement('canvas');
@@ -51,6 +52,9 @@ function canvasApp() {
 			context.lineWidth = 2;
 				var x = e.pageX||e.clientX - theCanvas.offsetLeft,
 								y = e.pageY||e.clientY - theCanvas.offsetTop;
+								l.log(e.pageX+"---"+e.pageY);
+								l.log(e.clientX+"---"+e.clientY);
+								l.log(theCanvas.offsetLeft+"---"+theCanvas.offsetTop);
 			context.moveTo(x, y);
 		}
 
@@ -63,6 +67,10 @@ function canvasApp() {
 		function draw(e){
 				var x = e.pageX||e.clientX - theCanvas.offsetLeft,
 								y = e.pageY||e.clientY - theCanvas.offsetTop;
+
+								l.log(e.pageX+"---"+e.pageY);
+								l.log(e.clientX+"---"+e.clientY);
+								l.log(theCanvas.offsetLeft+"---"+theCanvas.offsetTop);
 			context.lineTo(x,y);
 			context.stroke();
 
@@ -84,6 +92,9 @@ function canvasApp() {
 			theCanvas.addEventListener("mousedown",function(e){
 				var x = e.pageX||e.clientX,
 								y = e.pageY||e.clientY;
+								l.log(e.pageX+"---"+e.pageY);
+								l.log(e.clientX+"---"+e.clientY);
+
 				if(!block){
 					socket.emit('startLine',{clientX : x, clientY : y});
 					click = true;
@@ -96,6 +107,9 @@ function canvasApp() {
 			window.addEventListener("mouseup",function(e){
 				var x = e.pageX||e.clientX,
 								y = e.pageY||e.clientY;
+								l.log(e.pageX+"---"+e.pageY);
+								l.log(e.clientX+"---"+e.clientY);
+
 				if(!block){
 					socket.emit('closeLine',{clientX : x, clientY : y});
 					click = false;
@@ -108,6 +122,8 @@ function canvasApp() {
 			theCanvas.addEventListener("mousemove",function(e){
 					var x = e.pageX||e.clientX,
 					y = e.pageY||e.clientY;
+
+
 				if(click){
 					if(!block){
 						socket.emit('draw',{clientX : x, clientY : y});
