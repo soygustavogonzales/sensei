@@ -9,13 +9,15 @@
     "webrtc.io": "latest",
     "webrtc.io-client": "latest",
     "express": "3.1.0",
-    "ws": "latest"
+    "ws": "latest",
+    "less":"1.5.1",
+    "socket.io":"0.9.16"
   },
   "subdomain": "MultiWebRTC",
   "scripts": {
     "start": "example/server.js"
   },
-  "author": "Ben Brittain",
+  "author": "Gustavo Gonzales",
   "contributors": [
     {
       "name": "Ben Brittain",

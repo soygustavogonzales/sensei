@@ -1,4 +1,8 @@
 var express = require('express');
+var less = require('less');//para trabajar con el precompilador de less
+var toCss = require('./serverLess.js');//para trabajar con el precompilador de less
+var path = require('path');//para trabajar con el precompilador de less
+var fs = require('fs');//para trabajar con el precompilador de less
 var app = express();
 var server = require('http').createServer(app);
 var webRTC = require('webrtc.io').listen(server);
@@ -6,7 +10,7 @@ var io = require('socket.io').listen(server);
 io.set('log level',1); //Lo pongo a nivel uno para evitar demasiados logs ajenos a la aplicación.
 
 
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 4530;
 
 app.configure(function(){
   app.set("port",port);
@@ -18,12 +22,28 @@ app.configure(function(){
   app.use(express.static(__dirname +"/public"))
 });
 
+/*Precompilar el styles.less --> styles.css*/
+var lessFile = './public/styles/less/styles.less';
+fs.watchFile(lessFile,function(){//cuando se hagan cambios en el archivo .less
+  var cssFile = toCss(lessFile,//ejecuto el preprocesador
+  {
+    less:less,
+    path:path,
+    fs:fs,
+  });
+  //cssFIle: Deberia contener la ruta del archivo .css que se exporto(falta arreglar)
+})
+
+/*end Preprocesador Less*/
+
+/*Routes********/
 app.get('/', function(req, res) {
   res.render('index.jade');
   res.sendfile(__dirname + "/index.html");
 });
+/*end routes****/
 
-
+/*WebRTC********/
 webRTC.rtc.on('chat_msg', function(data, socket) {
   var roomList = webRTC.rtc.rooms[data.room] || [];
 
@@ -49,6 +69,7 @@ webRTC.rtc.on('chat_msg', function(data, socket) {
     }
   }
 });
+/*end WebRTC***********/
 
 //**Configuraciones para el deploying con heroku.No necesario para correrlo en local
 io.configure(function () {

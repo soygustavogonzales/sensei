@@ -40,14 +40,14 @@ function canvasApp() {
 		los demás deben esperar a que este termine el trazo para poder dibujar ellos */
 
 		function clean(){
-			context.fillStyle = "green";
+			context.fillStyle = "transparent";
 			context.fillRect(0,0,theCanvas.width,theCanvas.height);
 		}
 
 		//Se inicia al trazo en las coordenadas indicadas.
 		function startLine(e){
 			context.beginPath();
-			context.strokeStyle = "#fff";
+			context.strokeStyle = "#000";
 			context.lineCap = "round";
 			context.lineWidth = 2;
 				var x = e.pageX||e.clientX - theCanvas.offsetLeft,
@@ -163,3 +163,108 @@ function canvasApp() {
 
 
 }
+
+/*Efectos en el DOM ************/
+;!function(window,$,undefined){
+  var l = console;
+	 var anchoVen = window.outerWidth; //el ancho(en pixeles) de la ventana del navegador(todos los navegadores), ultimas versiones
+	 var videoYou = document.querySelector("#you");
+	 l.log(videoYou)
+	 var dis_left_relative = 55;
+  l.log(anchoVen)
+  $(function(){
+  	var lateral = $('.lateral');
+  	var lateral_content = $('.lateral > .content');
+  		lateral.status = false;//esta retraido(como oculto)
+  	lateral.css({
+  		"left":(anchoVen-dis_left_relative)+"px"
+  	});
+  	var trip = $('.trip');
+  	/********/
+  	/********/
+  	l.log(trip);
+  	trip.on("click",function(){
+  		l.log("click");
+  		var sentido = ((lateral.status==true)?"+":"-");
+		 		lateral.animate({
+		 			left:sentido+"=200px",
+		 			opacity:"show"
+		 		},800,function(){
+		 			if(sentido=="-")
+		 				lateral.status = true;//esta visible
+		 			else
+		 				lateral.status = false;//esta oculto
+
+		 		});
+  	});
+  	trip.on("mouseenter",function(){
+  		if(!lateral.status){
+
+	  		l.log("mouseenter");
+	  		lateral.animate({
+	  			left:"-=10px"
+	  		},205,function(){
+	  			lateral.animate({left:"+=10px"},205)
+	  			
+	  		});
+  		
+  		}
+  	});
+
+  	var initVideo = function(){
+				 /*
+				 */
+				 videoYou.width = lateral_content.width() - 50;
+				 videoYou.height = lateral_content.height()/4;
+				 videoYou.style.position = "absolute";
+				 videoYou.style.borderRadius = "5px";
+				 videoYou.style.marginLeft = "55px";
+				 videoYou.style.top = "10px";
+
+  	}
+  		initVideo();
+  	
+  	$('canvas').on({
+  		"mousedown" : function(e) {//cuando se de baje el boton del mouse
+  				lateral.css({
+  					"display":"none"
+  				});
+  		},
+  		"mouseup": function (e) {//cuando se suelte el boton del mouse
+  					lateral.css({
+  					"display":"inline-block"
+  				});
+  		}  
+
+  	});
+  	$('#messages').mCustomScrollbar({
+  		mouseWheel:true,
+  		scrollButtons:{
+  			enable:true,
+  			scrollType:"continuous",
+  			scrollSpeed:"auto",
+  			scrollAmount:40
+  		},
+  		theme:"dark-2",
+  		advanced:{
+  			updateOnContentResize:true,
+  			autoScrollOnFocus:true
+  		}
+  	})
+  	/*
+  	*/
+  	
+  	$(window).on("resize",function(){
+  		l.log("redimensionaste la ventana");
+	 		var anchoVen = window.outerWidth; //el ancho(en pixeles) de la ventana del navegador(todos los navegadores), ultimas versiones
+  		lateral.css({
+  			"left":(anchoVen-dis_left_relative)+"px"
+  		});
+  		lateral.status = false;
+  		l.log("lateral.status: "+lateral.status)
+  	});
+  })
+		
+
+  
+}(window,jQuery,undefined);

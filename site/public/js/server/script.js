@@ -57,7 +57,7 @@ function removeVideo(socketId) {
 }
 
 function addToChat(msg, color) {
-  var messages = document.getElementById('messages');
+  var messages = document.getElementById("messages").getElementsByTagName('p')[0];
   msg = sanitize(msg);
   if(color) {
     msg = '<span style="color: ' + color + '; padding-left: 15px">' + msg + '</span>';
@@ -123,6 +123,12 @@ var dataChannelChat = {
   event: 'data stream data'
 };
 
+var getNameBrowser = function(){
+  var userAgent=navigator.userAgent;//devuelve una cadena con el nombre del navegador ,version, sistema operativo (nombre generico) del usuario,motor del navegador.
+  var resq=/(msie)|(firefox)|(chrome)|(opera)|(safari)/i.exec(userAgent);//resq sera una matriz que contendra las coincidencias encontradas en la cadena segun el patron
+  return resq[0];
+}
+
 function initChat() {
   var chat;
 
@@ -175,40 +181,44 @@ function initChat() {
 
 
 function init() {
-  if(PeerConnection) {
-    rtc.createStream({
-      "video": false//{"mandatory": {}, "optional": []}
-      ,"audio": true
-    }, function(stream) {
-      document.getElementById('you').src = URL.createObjectURL(stream);
-      document.getElementById('you').play();
-      //videos.push(document.getElementById('you'));
-      //rtc.attachStream(stream, 'you');
-      //subdivideVideos();
+  if(getNameBrowser() == "Chrome"){
+    if(PeerConnection) {
+      rtc.createStream({
+        "video": false//{"mandatory": {}, "optional": []}
+        ,"audio": true
+      }, function(stream) {
+        document.getElementById('you').src = URL.createObjectURL(stream);
+        document.getElementById('you').play();
+        //videos.push(document.getElementById('you'));
+        //rtc.attachStream(stream, 'you');
+        //subdivideVideos();
+      });
+    } else {
+      alert('Your browser is not supported or you have to turn on flags. In chrome you go to chrome://flags and turn on Enable PeerConnection remember to restart chrome');
+    }
+
+
+    var room = window.location.hash.slice(1);
+
+    rtc.connect("ws:" + window.location.href.substring(window.location.protocol.length).split('#')[0], room);
+
+    rtc.on('add remote stream', function(stream, socketId) {
+      console.log("ADDING REMOTE STREAM...");
+      var clone = cloneVideo('you', socketId);
+      document.getElementById(clone.id).setAttribute("class", "");
+      rtc.attachStream(stream, clone.id);
+      subdivideVideos();
     });
-  } else {
-    alert('Your browser is not supported or you have to turn on flags. In chrome you go to chrome://flags and turn on Enable PeerConnection remember to restart chrome');
+    rtc.on('disconnect stream', function(data) {
+      console.log('remove ' + data);
+      removeVideo(data);
+    });
+    initFullScreen();
+    initNewRoom();
+    initChat();
+  }else{
+    alert("Your browser is not 'Chrome', changing your browser");
   }
-
-
-  var room = window.location.hash.slice(1);
-
-  rtc.connect("ws:" + window.location.href.substring(window.location.protocol.length).split('#')[0], room);
-
-  rtc.on('add remote stream', function(stream, socketId) {
-    console.log("ADDING REMOTE STREAM...");
-    var clone = cloneVideo('you', socketId);
-    document.getElementById(clone.id).setAttribute("class", "");
-    rtc.attachStream(stream, clone.id);
-    subdivideVideos();
-  });
-  rtc.on('disconnect stream', function(data) {
-    console.log('remove ' + data);
-    removeVideo(data);
-  });
-  initFullScreen();
-  initNewRoom();
-  initChat();
 }
 
 window.onresize = function(event) {

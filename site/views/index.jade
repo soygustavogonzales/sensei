@@ -1,25 +1,47 @@
 !!! 5
 html(lang="es-PE")
- head
-   meta(charset="utf-8")
-   title Inicio
-   link(rel="stylesheet",href="style.css")
-   script(type='text/javascript',src="webrtc.io.js")
-   script(type='text/javascript', src='/socket.io/socket.io.js')
- body
-  div#videos
-    video(id="you", class="flip", autoplay, width="263", height="200", style="position: absolute; left: 0px; bottom: 0px;")
-  div#pizarra
-    canvas#canvas(width='420', height='400')
-    | Tu Navegador no acepta canvas.
-    form
-     input#clean(type='button', value='Limpiame!!')
-  div#chatbox
-    div(class="button",id="hideShowMessages")|toggle chat
-    div#messages
-    input#chatinput(type="text",placeholder="Message:")
-  div.buttonBox
-    div(id="fullscreen", class="button")|Enter fullscreen
-    div(id="newRoom", class="button")|Create A New Room
-  script(src="script.js")
-  script(type='text/javascript', src='script_pizarra.js')
+  head
+    meta(charset="utf-8")
+    title Inicio
+    link(rel="stylesheet",href="styles/css/jquery.mCustomScrollbar.css")
+    link(rel="stylesheet",href="styles/css/styles.css")
+    script(type='text/javascript',src="js/server/webrtc.io.js")
+    script(type='text/javascript',src="js/client/jquery-1.9.1.min.js")
+    script(type='text/javascript', src='/socket.io/socket.io.js')
+  body
+    div#web
+      div#pizarra
+        canvas#canvas(width='1400', height='600')
+          |Tu Navegador no acepta canvas.
+    div.lateral
+      div.trip
+        i(class="fa fa-comments fa-2x")
+      div.content
+        div#videos
+          video(id="you", autoplay, controls,width="", height="", style="position: absolute; left: 0px; bottom: 0px;")
+        div.fondo
+          i(class="fa fa-comments fa-3x")
+        div.sup-content
+          div#chatbox
+            div#messages(class="scrollable")
+              p
+                |Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate 
+                |Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate
+                |Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate
+                |Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate
+                b|estas en B
+            div.control-group
+              div.controls
+                div.input-prepend
+                  span.add-on
+                    i(class="fa fa-comment fa-1x")
+                  input(class="span2 chatinput",id="inputIcon", type="text")
+          div.buttonBox
+            div.btn-group
+              div(id="fullscreen", class="btn")|fullscreen
+              div(id="newRoom", class="btn")|New Room
+            input#clean(class="btn btn-info" type='button', value='Limpiame!!')
+            div(class="btn btn-primary")|RESET
+    script(type='text/javascript', src="js/server/script.js")
+    script(type='text/javascript', src="js/client/jquery.mCustomScrollbar.concat.min.js")
+    script(type='text/javascript', src='js/client/script_pizarra.js')

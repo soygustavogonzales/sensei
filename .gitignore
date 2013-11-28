@@ -14,3 +14,14 @@ results
 
 node_modules
 npm-debug.log
+
+#Carpetas solo utilizadas en desarrollo, en produccion solo es util:
+# public/styles/styles.css , que contiene todos los estilos trabajados
+#mediante el preprocesador LESS
+
+site/public/styles/bootstrap/
+site/public/styles/less/
+site/public/styles/fonts/
+
+
+
