@@ -7,6 +7,10 @@ window.onload = function(){
 }
 
 var l = console;
+var plumon = {
+	color:"#000",
+	ancho:2
+};
 //Comprobamos mediante la librería moderniz que el navegador soporta canvas
 function canvasSupport(){
 	var canvas = document.createElement('canvas');
@@ -40,21 +44,27 @@ function canvasApp() {
 		los demás deben esperar a que este termine el trazo para poder dibujar ellos */
 
 		function clean(){
-			context.fillStyle = "transparent";
-			context.fillRect(0,0,theCanvas.width,theCanvas.height);
+			//context.fillStyle = "green";
+			theCanvas.width = theCanvas.width;
+			//context.fillRect(0,0,theCanvas.width,theCanvas.height);
+
+			l.log("se ejecuto clean")
 		}
 
 		//Se inicia al trazo en las coordenadas indicadas.
 		function startLine(e){
+			l.log(plumon.color);
 			context.beginPath();
-			context.strokeStyle = "#000";
+			context.strokeStyle = plumon.color||"#000";
 			context.lineCap = "round";
-			context.lineWidth = 2;
+			context.lineWidth = plumon.ancho||2;
 				var x = e.pageX||e.clientX - theCanvas.offsetLeft,
 								y = e.pageY||e.clientY - theCanvas.offsetTop;
+								/*
 								l.log(e.pageX+"---"+e.pageY);
 								l.log(e.clientX+"---"+e.clientY);
 								l.log(theCanvas.offsetLeft+"---"+theCanvas.offsetTop);
+								*/
 			context.moveTo(x, y);
 		}
 
@@ -65,12 +75,15 @@ function canvasApp() {
 
 		//Dibujamos el trazo recibiendo la posición actual del ratón.
 		function draw(e){
+			
+			context.strokeStyle = plumon.color||"#000";
 				var x = e.pageX||e.clientX - theCanvas.offsetLeft,
 								y = e.pageY||e.clientY - theCanvas.offsetTop;
-
-								l.log(e.pageX+"---"+e.pageY);
-								l.log(e.clientX+"---"+e.clientY);
-								l.log(theCanvas.offsetLeft+"---"+theCanvas.offsetTop);
+			/*
+											l.log(e.pageX+"---"+e.pageY);
+											l.log(e.clientX+"---"+e.clientY);
+											l.log(theCanvas.offsetLeft+"---"+theCanvas.offsetTop);
+			*/
 			context.lineTo(x,y);
 			context.stroke();
 
@@ -81,7 +94,7 @@ function canvasApp() {
 
 			//Al darle click al botón limpiar enviamos orden de devolver la pizarra a su estado inicial.
 			buttonClean.addEventListener("click",function(){
-
+				l.log("click en CLEANER")
 				if(!block){
 					socket.emit('clean',true);
 				}
@@ -107,8 +120,10 @@ function canvasApp() {
 			window.addEventListener("mouseup",function(e){
 				var x = e.pageX||e.clientX,
 								y = e.pageY||e.clientY;
+								/*
 								l.log(e.pageX+"---"+e.pageY);
 								l.log(e.clientX+"---"+e.clientY);
+								*/
 
 				if(!block){
 					socket.emit('closeLine',{clientX : x, clientY : y});
@@ -122,6 +137,7 @@ function canvasApp() {
 			theCanvas.addEventListener("mousemove",function(e){
 					var x = e.pageX||e.clientX,
 					y = e.pageY||e.clientY;
+				context.strokeStyle = plumon.color||"#000";
 
 
 				if(click){
@@ -166,18 +182,27 @@ function canvasApp() {
 
 /*Efectos en el DOM ************/
 ;!function(window,$,undefined){
+		/**Tooltip de boorstrap*/
+   $('#plumon').tooltip();//para q aparezca el tooltip cuando se produzca el hover sobre este elemento
+   $('#eraserButton').tooltip();//para q aparezca el tooltip cuando se produzca el hover sobre este elemento
+   $('#fullscreen').tooltip();
+   $('#newRoom').tooltip();
+		/***en tooltip*/
   var l = console;
 	 var anchoVen = window.outerWidth; //el ancho(en pixeles) de la ventana del navegador(todos los navegadores), ultimas versiones
+	 var altoVen = window.outerHeight;
 	 var videoYou = document.querySelector("#you");
 	 l.log(videoYou)
-	 var dis_left_relative = 55;
+	 var dis_left_relative = 65;//distancia de la salida del trip(el contenedor del logotipo de cada modulo)
+	 var dis_top_relative = 30;//distancia de la salida del trip(el contenedor del logotipo de cada modulo)
   l.log(anchoVen)
   $(function(){
   	var lateral = $('.lateral');
   	var lateral_content = $('.lateral > .content');
   		lateral.status = false;//esta retraido(como oculto)
   	lateral.css({
-  		"left":(anchoVen-dis_left_relative)+"px"
+  		"left":(anchoVen-dis_left_relative)+"px",
+  		"top":(0)+"px"
   	});
   	var trip = $('.trip');
   	/********/
@@ -187,7 +212,7 @@ function canvasApp() {
   		l.log("click");
   		var sentido = ((lateral.status==true)?"+":"-");
 		 		lateral.animate({
-		 			left:sentido+"=200px",
+		 			left:sentido+"=230px",
 		 			opacity:"show"
 		 		},800,function(){
 		 			if(sentido=="-")
@@ -214,12 +239,13 @@ function canvasApp() {
   	var initVideo = function(){
 				 /*
 				 */
-				 videoYou.width = lateral_content.width() - 50;
-				 videoYou.height = lateral_content.height()/4;
-				 videoYou.style.position = "absolute";
+				 videoYou.width = lateral_content.width() - 100;
+				 videoYou.height = lateral_content.height()/3;
+				 videoYou.style.position = "relative";
 				 videoYou.style.borderRadius = "5px";
-				 videoYou.style.marginLeft = "55px";
-				 videoYou.style.top = "10px";
+				 videoYou.style.top = "15px";
+				 videoYou.style.left = "15px";
+				 videoYou.style.boxSizing = "border-box";
 
   	}
   		initVideo();
@@ -251,14 +277,32 @@ function canvasApp() {
   			autoScrollOnFocus:true
   		}
   	})
+
+  	$('#eraserButton').on('click',function(){
+  		l.log("click en eraserButton")
+  		plumon.color = "rgba(255,255,255,1)";//color blanco
+  		plumon.ancho = 10;
+  	})
   	/*
   	*/
+  	var colorPicker = $('.colorPicker-plumon');
+  	l.log(colorPicker[0])
+  	$('plumon').on('click',function(){
+				colorPicker.trigger('click');
+  	})
+
+  	colorPicker.on("click",function(){
+  		l.log(this);
+  		plumon.color = this.value;
+  		l.log("click en colorPicker: "+ plumon.color + " : "+this.value);
+  	})
   	
   	$(window).on("resize",function(){
-  		l.log("redimensionaste la ventana");
+  		//l.log("redimensionaste la ventana");
 	 		var anchoVen = window.outerWidth; //el ancho(en pixeles) de la ventana del navegador(todos los navegadores), ultimas versiones
   		lateral.css({
-  			"left":(anchoVen-dis_left_relative)+"px"
+  			"left":(anchoVen-dis_left_relative)+"px",
+  			"top":(0)+"px"
   		});
   		lateral.status = false;
   		l.log("lateral.status: "+lateral.status)

@@ -56,17 +56,38 @@ function removeVideo(socketId) {
   }
 }
 
-function addToChat(msg, color) {
-  var messages = document.getElementById("messages").getElementsByTagName('p')[0];
-  msg = sanitize(msg);
-  if(color) {
-    msg = '<span style="color: ' + color + '; padding-left: 15px">' + msg + '</span>';
-  } else {
-    msg = '<strong style="padding-left: 15px">' + msg + '</strong>';
+/*
+  function addToChat(msg, color) {
+    var messages = document.getElementById("messages").getElementsByTagName('p')[0];
+    msg = sanitize(msg);
+    if(color) {
+      msg = '<span style="color: ' + color + '; padding-left: 15px">' + msg + '</span>';
+    } else {
+      msg = '<strong style="padding-left: 15px">' + msg + '</strong>';
+    }
+    messages.innerHTML = messages.innerHTML + msg + '<br>';
+    messages.scrollTop = 10000;
   }
-  messages.innerHTML = messages.innerHTML + msg + '<br>';
-  messages.scrollTop = 10000;
+*/
+/***Seccion Angular js***/
+var ListMessage = function($scope) {
+  $scope.messages = 
+  [{message:"hola",whoIs:"me"}];//{message:"",whoIs:""}
+  $scope.enviarMensaje = function(e){
+    var tecla = e.keyCode.toString();
+    if(tecla == "13"){
+      $scope.messages.push({
+        message:$scope.new_message,
+        whoIs:"me"
+      });
+
+      $scope.new_message = "";
+
+    }
+  }
 }
+
+/***End Seccion Angular js***/
 
 function sanitize(msg) {
   return msg.replace(/</g, '&lt;');
@@ -74,10 +95,29 @@ function sanitize(msg) {
 
 function initFullScreen() {
   var button = document.getElementById("fullscreen");
+
   button.addEventListener('click', function(event) {
-    var elem = document.getElementById("videos");
-    //show full screen
-    elem.webkitRequestFullScreen();
+    var document_ = document.documentElement;
+    if(document.webkitIsFullScreen){
+      if(document.cancelFullScreen) {
+        document.cancelFullScreen();
+      } else if(document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if(document.webkitCancelFullScreen) {
+        document.webkitCancelFullScreen();
+      }
+    }else{
+      if(document_.requestFullScreen) {
+          document_.requestFullScreen();
+          console.log("por defecto nativo soportado requestFullScreen");
+      } else if(document_.mozRequestFullScreen) {
+        document_.mozRequestFullScreen();
+      } else if(document_.webkitRequestFullScreen) {
+        document_.webkitRequestFullScreen();
+      } else{
+        console.log("no soporta full screen por javascript");
+      }
+    }
   });
 }
 
@@ -126,6 +166,7 @@ var dataChannelChat = {
 var getNameBrowser = function(){
   var userAgent=navigator.userAgent;//devuelve una cadena con el nombre del navegador ,version, sistema operativo (nombre generico) del usuario,motor del navegador.
   var resq=/(msie)|(firefox)|(chrome)|(opera)|(safari)/i.exec(userAgent);//resq sera una matriz que contendra las coincidencias encontradas en la cadena segun el patron
+  l.log(resq[0])
   return resq[0];
 }
 
@@ -140,22 +181,11 @@ function initChat() {
     chat = websocketChat;
   }
 
-  var input = document.getElementById("chatinput");
+  var input = document.querySelector("#chat-input");
+  l.log(input)
   var toggleHideShow = document.getElementById("hideShowMessages");
   var room = window.location.hash.slice(1);
   var color = "#" + ((1 << 24) * Math.random() | 0).toString(16);
-
-  toggleHideShow.addEventListener('click', function() {
-    var element = document.getElementById("messages");
-
-    if(element.style.display === "block") {
-      element.style.display = "none";
-    }
-    else {
-      element.style.display = "block";
-    }
-
-  });
 
   input.addEventListener('keydown', function(event) {
     var key = event.which || event.keyCode;
@@ -168,23 +198,23 @@ function initChat() {
           "color": color
         }
       }));
-      addToChat(input.value);
+      //addToChat(input.value);
       input.value = "";
     }
   }, false);
   rtc.on(chat.event, function() {
     var data = chat.recv.apply(this, arguments);
     console.log(data.color);
-    addToChat(data.messages, data.color.toString(16));
+    //addToChat(data.messages, data.color.toString(16));
   });
 }
 
 
 function init() {
-  if(getNameBrowser() == "Chrome"){
+  if(getNameBrowser() == "Chrome"||getNameBrowser() == "Firefox"){
     if(PeerConnection) {
       rtc.createStream({
-        "video": false//{"mandatory": {}, "optional": []}
+        "video": true//{"mandatory": {}, "optional": []}
         ,"audio": true
       }, function(stream) {
         document.getElementById('you').src = URL.createObjectURL(stream);

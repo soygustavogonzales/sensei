@@ -7430,13 +7430,15 @@ td.visible-print {
     More info at: http://lesselements.com.
     Modificated by Gustavo Gonzales on January 2013.
   ---------------------------------------------------*/
-body {
-  background: url('/img/bg.gif');
-  overflow-x: hidden;
+* {
   -ms-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+}
+body {
+  background: url('/img/bg.gif');
+  overflow-x: hidden;
   word-break: break-word;
 }
 #web {
@@ -7457,16 +7459,15 @@ body {
 .lateral {
   display: inline-block;
   position: absolute;
-  width: 250px;
+  width: 350px;
   height: auto;
   top: 0;
-  overflow: hidden;
 }
 .lateral .trip {
   font-size: 10px;
   text-align: center;
   vertical-align: middle;
-  width: 40px;
+  width: 70px;
   height: 30px;
   float: left;
   opacity: 1;
@@ -7501,14 +7502,18 @@ body {
 }
 .lateral .content {
   float: right;
-  width: 210px;
-  height: 600px;
+  width: 280px;
+  height: auto;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
   background: #ffffff;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #c6c6c6), color-stop(1, #ffffff));
-  background: -ms-linear-gradient(bottom, #c6c6c6, #ffffff);
-  background: -moz-linear-gradient(center bottom, #c6c6c6 0%, #ffffff 100%);
-  background: -o-linear-gradient(#ffffff, #c6c6c6);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#c6c6c6', GradientType=0);
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f2f1f0), color-stop(1, #ffffff));
+  background: -ms-linear-gradient(bottom, #f2f1f0, #ffffff);
+  background: -moz-linear-gradient(center bottom, #f2f1f0 0%, #ffffff 100%);
+  background: -o-linear-gradient(#ffffff, #f2f1f0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f2f1f0', GradientType=0);
   -webkit-border-top-right-radius: 5px;
   -webkit-border-bottom-right-radius: 5px;
   -webkit-border-bottom-left-radius: 5px;
@@ -7525,30 +7530,66 @@ body {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
 }
-.lateral .content .fondo {
-  z-index: 1;
-  opacity: .5;
-  padding: 10px;
-  font-size: 40px;
-  margin: 10px 65px;
-  position: relative;
-}
-.lateral .content #videos #you {
+.lateral #videos #you {
   position: relative;
   display: block;
-  margin-left: 35px;
-  left: 35px;
+  width: 280px -50px;
 }
-.lateral .content .sup-content {
-  margin: 20px 10px;
+.lateral .sup-content {
+  margin: 30px 10px 0 15px;
   z-index: 2;
   position: relative;
+  width: 180px;
 }
-.lateral .content .sup-content #chatbox #messages {
+.lateral .sup-content #chatbox #messages {
   height: 250px;
-  background: 100%;
+  background: #e6e6e6;
+  border: 2px solid #5BC0DE;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 1px 1px 25px 0.1em;
+  -moz-box-shadow: inset 1px 1px 25px 0.1em;
+  box-shadow: inset 1px 1px 25px 0.1em;
 }
-.lateral .content .sup-content #chatbox .chatinput {
-  margin-top: 10px;
-  width: 170px;
+.lateral .sup-content #chatbox #messages ul {
+  margin-left: -35px;
+}
+.lateral .sup-content #chatbox #messages ul .buble {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background: #9bc2e8;
+  -webkit-box-shadow: 2px 3px 10px 0.1em;
+  -moz-box-shadow: 2px 3px 10px 0.1em;
+  box-shadow: 2px 3px 10px 0.1em;
+  list-style-type: none;
+  padding: 5px;
+  margin: 9px;
+  display: table;
+}
+.lateral .sup-content #chatbox #messages ul .buble:after {
+  content: "";
+  width: 15px;
+  height: 10px;
+  background: transparent;
+  border-top: 10px solid #9bc2e8;
+  border-left: 4px solid transparent;
+  border-right: 11px solid transparent;
+  position: relative;
+  top: 30px;
+  left: 3%;
+}
+.lateral .sup-content #chatbox .row {
+  margin-top: 15px;
+}
+.lateral .sup-content .buttonBox {
+  margin-top: 15px;
+}
+.lateral .sup-content .buttonBox input[type="color"] {
+  width: 30px;
+  height: 10px;
+}
+.lateral .sup-content .buttonBox .row {
+  margin-bottom: 5px;
 }
