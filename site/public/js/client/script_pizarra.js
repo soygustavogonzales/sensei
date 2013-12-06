@@ -1,6 +1,5 @@
 //Esperamos a que se cargue el dom para iniciar la aplicación
 window.onload = function(){
-	console.log("hola desde script_pizarra");
 	init();
 	canvasApp();
 
@@ -9,7 +8,8 @@ window.onload = function(){
 var l = console;
 var plumon = {
 	color:"#000",
-	ancho:2
+	ancho:2,
+	modo:true//modo plumon
 };
 //Comprobamos mediante la librería moderniz que el navegador soporta canvas
 function canvasSupport(){
@@ -22,7 +22,7 @@ function canvasApp() {
 
 	//Si el navegador soporta canvas inicio la app.
 	if(canvasSupport()){
-		console.log("Soporta canvas?: "+canvasSupport());
+		//console.log("Soporta canvas?: "+canvasSupport());
 		var theCanvas = document.getElementById("canvas"),
 			context = theCanvas.getContext("2d"),
 			buttonClean = document.getElementById("clean");
@@ -48,14 +48,16 @@ function canvasApp() {
 			theCanvas.width = theCanvas.width;
 			//context.fillRect(0,0,theCanvas.width,theCanvas.height);
 
-			l.log("se ejecuto clean")
+			//l.log("se ejecuto clean")
 		}
 
 		//Se inicia al trazo en las coordenadas indicadas.
 		function startLine(e){
 			l.log(plumon.color);
+			l.log(window.colorPicker.value);
 			context.beginPath();
-			context.strokeStyle = plumon.color||"#000";
+			context.strokeStyle = ((plumon.modo)?window.colorPicker.value:plumon.color);
+			l.log(context.strokeStyle)
 			context.lineCap = "round";
 			context.lineWidth = plumon.ancho||2;
 				var x = e.pageX||e.clientX - theCanvas.offsetLeft,
@@ -76,7 +78,7 @@ function canvasApp() {
 		//Dibujamos el trazo recibiendo la posición actual del ratón.
 		function draw(e){
 			
-			context.strokeStyle = plumon.color||"#000";
+			//context.strokeStyle = window.colorPicker.value||plumon.color||"#000";
 				var x = e.pageX||e.clientX - theCanvas.offsetLeft,
 								y = e.pageY||e.clientY - theCanvas.offsetTop;
 			/*
@@ -105,8 +107,10 @@ function canvasApp() {
 			theCanvas.addEventListener("mousedown",function(e){
 				var x = e.pageX||e.clientX,
 								y = e.pageY||e.clientY;
+								/*
 								l.log(e.pageX+"---"+e.pageY);
 								l.log(e.clientX+"---"+e.clientY);
+								*/
 
 				if(!block){
 					socket.emit('startLine',{clientX : x, clientY : y});
@@ -137,7 +141,6 @@ function canvasApp() {
 			theCanvas.addEventListener("mousemove",function(e){
 					var x = e.pageX||e.clientX,
 					y = e.pageY||e.clientY;
-				context.strokeStyle = plumon.color||"#000";
 
 
 				if(click){
@@ -192,10 +195,8 @@ function canvasApp() {
 	 var anchoVen = window.outerWidth; //el ancho(en pixeles) de la ventana del navegador(todos los navegadores), ultimas versiones
 	 var altoVen = window.outerHeight;
 	 var videoYou = document.querySelector("#you");
-	 l.log(videoYou)
 	 var dis_left_relative = 65;//distancia de la salida del trip(el contenedor del logotipo de cada modulo)
 	 var dis_top_relative = 30;//distancia de la salida del trip(el contenedor del logotipo de cada modulo)
-  l.log(anchoVen)
   $(function(){
   	var lateral = $('.lateral');
   	var lateral_content = $('.lateral > .content');
@@ -207,7 +208,6 @@ function canvasApp() {
   	var trip = $('.trip');
   	/********/
   	/********/
-  	l.log(trip);
   	trip.on("click",function(){
   		l.log("click");
   		var sentido = ((lateral.status==true)?"+":"-");
@@ -282,21 +282,24 @@ function canvasApp() {
   		l.log("click en eraserButton")
   		plumon.color = "rgba(255,255,255,1)";//color blanco
   		plumon.ancho = 10;
+  		plumon.modo = false;//modo borrador
   	})
   	/*
   	*/
-  	var colorPicker = $('.colorPicker-plumon');
-  	l.log(colorPicker[0])
-  	$('plumon').on('click',function(){
-				colorPicker.trigger('click');
-  	})
-
-  	colorPicker.on("click",function(){
-  		l.log(this);
+  	window.colorPicker = document.querySelector('.colorPicker-plumon');
+  	colorPicker.addEventListener("click",function(){
+  		//l.log(this);
   		plumon.color = this.value;
+  		plumon.ancho = 2;
   		l.log("click en colorPicker: "+ plumon.color + " : "+this.value);
-  	})
+  	},false);
   	
+  	$('#plumon').on('click',function(){
+  		plumon.modo = true;
+				colorPicker.dispatchEvent(new MouseEvent('click'));//lanzo en evento, con codigo nativo de javascrip, pues con jquery me dio error
+				//colorPicker.trigger('click');//forma comun de lanzar un evento mediante jquery
+
+  	})
   	$(window).on("resize",function(){
   		//l.log("redimensionaste la ventana");
 	 		var anchoVen = window.outerWidth; //el ancho(en pixeles) de la ventana del navegador(todos los navegadores), ultimas versiones
@@ -305,7 +308,7 @@ function canvasApp() {
   			"top":(0)+"px"
   		});
   		lateral.status = false;
-  		l.log("lateral.status: "+lateral.status)
+  		//l.log("lateral.status: "+lateral.status)
   	});
   })
 		

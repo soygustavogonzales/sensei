@@ -6,7 +6,7 @@ html(ng-app, lang="es-PE")
     link(rel="stylesheet",href="styles/css/jquery.mCustomScrollbar.css")
     link(rel="stylesheet",href="styles/css/styles.css")
     script(type='text/javascript',src="js/server/webrtc.io.js")
-    script(type='text/javascript',src="js/client/jquery-1.9.1.min.js")
+    script(type='text/javascript',src="js/client/jquery-2.0.3.min.js")
     script(type='text/javascript',src="js/client/angular.min.js")
     script(type='text/javascript', src='/socket.io/socket.io.js')
   body
@@ -45,7 +45,7 @@ html(ng-app, lang="es-PE")
               div.col-xs-12
                 div.btn-group
                   div.btn-group
-                    div(id="plumon",class="btn btn-primary",data-toggle="tooltip",data-placement="top",title,data-original-title="Plumon")
+                    div#plumon(class="btn btn-primary",data-toggle="tooltip",data-placement="top",title,data-original-title="Plumon")
                       i(class="fa fa-pencil")
                       input(type="color",class="colorPicker-plumon")
                     button(type="button",class="btn btn-primary dropdown-toggle",data-toggle="dropdown")

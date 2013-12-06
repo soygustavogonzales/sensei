@@ -7593,3 +7593,8 @@ body {
 .lateral .sup-content .buttonBox .row {
   margin-bottom: 5px;
 }
+.lateral .sup-content .buttonBox .row #plumon input[type="color"] {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
