@@ -31,11 +31,11 @@ app.get('/', function(req, res) {
 
 //**Configuraciones para el deploying con heroku.No necesario para correrlo en local
 /*
+*/
 io.configure(function () {
   io.set("transports", ["xhr-polling"]);
   io.set("polling duration", 10);
 });
-*/
 //**Fin de las configuraciones para el deploying con heroku
 
 //Se ha establecido conexión
