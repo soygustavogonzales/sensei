@@ -1,6 +1,6 @@
 //Esperamos a que se cargue el dom para iniciar la aplicación
 window.onload = function(){
-	init();
+	//init();
 	canvasApp();
 
 }
