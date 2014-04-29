@@ -1,1 +1,24 @@
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+*.swp
 
+pids
+logs
+results
+
+node_modules
+npm-debug.log
+
+#Carpetas solo utilizadas en desarrollo, en produccion solo es util:
+# public/styles/styles.css , que contiene todos los estilos trabajados
+#mediante el preprocesador LESS
+
+#site/public/styles/less/
+#site/public/styles/fonts/
+#site/public/bootstrap/
