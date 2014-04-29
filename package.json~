@@ -10,8 +10,8 @@
     "socket.io": "0.9.16",
     "jade": "0.35.0"
   },
-  "name": "sensei-app4",
-  "subdomain": "sensei-app4",
+  "name": "sensei-app3",
+  "subdomain": "sensei-app3",
   "scripts": {
     "start": "node server.js"
   },
