@@ -1,5 +1,5 @@
 !!! 5
-html(ng-app, lang="es-PE")
+html(ng-app="senseiApp", lang="es-PE")
   head
     meta(charset="utf-8")
     title Inicio
@@ -38,9 +38,9 @@ html(ng-app, lang="es-PE")
           div#chatbox(ng-controller="ListMessage")
             div#messages(class="scrollable")
               ul
-                li(ng-repeat="msj in messages",class="buble")
+                li(ng-repeat="(key,val) in messages|limitTo:5",class="buble")
                   span 
-                    {{msj.message}}
+                    {{val.message}}
             div(class="row")
               div.col-xs-12
                 div.input-group
@@ -79,8 +79,11 @@ html(ng-app, lang="es-PE")
                       li
                         a
                           span#clean|Borrar todo
+
     script(type='text/javascript', src="https://cdn.firebase.com/js/client/1.0.11/firebase.js")
-    script(type='text/javascript', src="js/client/script.js")
+    script(type='text/javascript', src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js")
+    script(type='text/javascript', src="js/client/senseiApp.js")
+    script(type='text/javascript', src="js/client/webrtcVideoAudio.js")
     script(type='text/javascript', src="js/client/pizarra.js")
     script(type='text/javascript', src="js/client/jquery.mCustomScrollbar.concat.min.js")
     script(type='text/javascript', src="bootstrap/js/bootstrap.min.js")
