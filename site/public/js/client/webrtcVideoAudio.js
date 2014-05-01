@@ -12,25 +12,6 @@ var webrtc = new SimpleWebRTC({
   webrtc.joinRoom('myroomSensei');
   });
 
-/***Seccion Angular js***/
-var ListMessage = function($scope) {
-  $scope.messages = 
-  [{message:"hola",whoIs:"me"}];//{message:"",whoIs:""}
-  $scope.enviarMensaje = function(e){
-    var tecla = e.keyCode.toString();
-    if(tecla == "13"){
-      $scope.messages.push({
-        message:$scope.new_message,
-        whoIs:"me"
-      });
-
-      $scope.new_message = "";
-
-    }
-  }
-}
-
-/***End Seccion Angular js***/
 
 function sanitize(msg) {
   return msg.replace(/</g, '&lt;');
