@@ -74,6 +74,9 @@ $(document).ready(function () {
       y1 = Math.floor((e.pageY - offset.top) / pixSize - 1);
       modo = "borrador"
   })
+  $('#plumon').click(function(){
+      modo = "plumon";
+  })
 
   // Add callbacks that are fired any time the pixel data changes and adjusts the canvas appropriately.
   // Note that child_added events will be fired for initial pixel data as well.
