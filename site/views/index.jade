@@ -7,21 +7,7 @@ html(ng-app="senseiApp", lang="es-PE")
     link(rel="stylesheet",href="styles/css/styles.css")
     script(src="http://simplewebrtc.com/latest.js")
     script(type='text/javascript',src="js/client/jquery-2.0.3.min.js")
-    script(type='text/javascript',src="js/client/angular.min.js")
-    style
-      #remoteVideo{
-        left:20px;
-        top:20px;
-        height:200px;
-        width:200px;
-        position:absolute;
-        display:inline-block;
-        border:2px dotted black;
-      }
-      #remoteVideo video {
-      width:100%;
-      height:100%;
-      } 
+    script(type='text/javascript',src="js/client/angular.min.js") 
   body
     div#web
       div#pizarra
@@ -47,7 +33,7 @@ html(ng-app="senseiApp", lang="es-PE")
                   span.input-group-addon
                     i(class="fa fa-comment fa-1x")
                   input(ng-model="new_message", ng-keyup="enviarMensaje($event)" ,class="form-control",id="chat-input", type="text")
-          div.buttonBox
+          div.buttonBox(ng-controller="ctrlButtons")
             div.row
               div.col-xs-12
                 div.btn-group
@@ -67,8 +53,7 @@ html(ng-app="senseiApp", lang="es-PE")
                       span.sr-only|Toggle dropdown
                     ul.dropdown-menu(role="menu")
                       li
-                        a
-                          span|Tamaño
+                        a(id="tamano", href="#")|Tamaño
                   div.btn-group
                     button#eraserButton(type="button",class="btn btn-info",data-toggle="tooltip",data-placement="top",title,data-original-title="Borrador")
                       i(class="fa fa-eraser")
@@ -77,8 +62,7 @@ html(ng-app="senseiApp", lang="es-PE")
                       span.sr-only|Toggle Dropdown
                     ul.dropdown-menu(role="menu")
                       li
-                        a
-                          span#clean|Borrar todo
+                        a(id="clean", href="#")|Borrar todo
 
     script(type='text/javascript', src="https://cdn.firebase.com/js/client/1.0.11/firebase.js")
     script(type='text/javascript', src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js")

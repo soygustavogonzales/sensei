@@ -25,4 +25,8 @@ controller('ListMessage', ['$scope','svsChat', function ($scope,svsChat) {
     }
   }
   
+}]).
+controller('ctrlButtons', ['$scope', function($scope){
+  console.log($scope)
 }])
+

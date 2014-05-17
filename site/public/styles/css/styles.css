@@ -7598,3 +7598,16 @@ body {
   width: 0;
   height: 0;
 }
+#remoteVideo{
+  left:20px;
+  top:20px;
+  height:200px;
+  width:200px;
+  position:absolute;
+  display:inline-block;
+  border:2px dotted black;
+}
+#remoteVideo video {
+width:100%;
+height:100%;
+} 
