@@ -6,7 +6,7 @@ var fs = require('fs');//para trabajar con el precompilador de less
 var app = express();
 var server = require('http').createServer(app);
 
-var port = process.env.PORT || 4530;
+var port = process.env.PORT || 4000;
 
 app.configure(function(){
   app.set("port",port);
@@ -41,10 +41,12 @@ app.get('/', function(req, res) {
 
 
 //**Configuraciones para el deploying con heroku.No necesario para correrlo en local
+/*
 io.configure(function () {
   io.set("transports", ["xhr-polling"]);
   io.set("polling duration", 10);
 });
+*/
 //**Fin de las configuraciones para el deploying con heroku
 
 

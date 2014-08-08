@@ -4,7 +4,7 @@ var path = require('path');//para trabajar con el precompilador de less
 var fs = require('fs');//para trabajar con el precompilador de less
 var app = express();
 var server = require('http').createServer(app);
-var port = process.env.PORT || 4520;
+var port = process.env.PORT || 4000;
 
 app.configure(function(){
   app.set("port",port);
