@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../../bower_components/raphael/raphael-min.js"></script>
+	<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="js/fabric.js"></script>
+ <link rel="stylesheet" type="text/css" href="font-awesome-4.1.0/css/font-awesome.min.css"/>
+ <link rel="stylesheet" href="styles/dashboard.css">
+ <link rel="stylesheet" href="styles/dashboard2.css">
+	<link rel="stylesheet" href="styles/styles.css">
+	<link href="styles/jquery.mCustomScrollbar.css" rel="stylesheet" />
+	<!-- 
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+	 -->
+</head>
+<body>
+			<div class="box box-left">
+						<div class="logo">
+							<i class="fa fa-cube fa-5x"></i>
+						</div>
+						<div id="controls">
+							<div class="input-search">
+								<input class="search" type="text" placeholder="figura">
+								<i class="fa fa-search"></i>
+							</div>
+						</div>
+		    <nav class="" role='navigation'>
+		    	<div class="btn-navigation">
+		      <ul class="btn-left">
+		        <li>
+		          <div class="btn-control rectangle" name="rectangle">
+		          </div>
+		        </li>
+		        <li>
+		          <div class="btn-control circule" name="circle" >
+		          </div>
+		        </li>
+		        <li>
+		          <div class="btn-control triangle" name="triangle" >
+		          </div>
+		        </li>
+		        <li>
+		          <div class="btn-control" >
+		          </div>
+		        </li>
+		        <li>
+		          <div class="btn-control" >
+		          </div>
+		        </li>
+		        <li>
+		          <div class="btn-control" >
+		          </div>
+		        </li>
+		        <li>
+		          <div class="btn-control" >
+		          </div>
+		        </li>
+		        <li>
+		          <div class="btn-control" >
+		          </div>
+		        </li>
+		        <li>
+		          <div class="btn-control" >
+		          </div>
+		        </li>
+		      </ul>
+		      <ul class="btn-right">
+		        <li>
+		          <div class="btn-control" >
+		          </div>
+		        </li>
+		       	<li>
+		          <div class="btn-control" >
+		          </div>
+		        </li>
+		        <li>
+		          <div class="btn-control" >
+		          </div>
+		        </li>
+		        <li>
+		          <div class="btn-control" >
+		          </div>
+		        </li>
+		        <li>
+		          <div class="btn-control" >
+		          </div>
+		        </li>
+		        <li>
+		          <div class="btn-control" >
+		          </div>
+		        </li>
+		        <li>
+		          <div class="btn-control" >
+		          </div>
+		        </li>
+		     		 <li>
+		          <div class="btn-control" >
+		          </div>
+		        </li>
+		        <li>
+		          <div class="btn-control" >
+		          </div>
+		        </li> 	
+		      </ul>
+		    	</div>
+		    </nav>   
+		 </div><!-- ./ box -->
+		 <div class="box box-right">
+						<div class="logo">
+							<i class="fa fa-cubes fa-5x"></i><!-- folder-open-o -->
+						</div>
+						<div id="controls">
+							<div class="input-search">
+								<input class="search" type="text" placeholder="archivo">
+								<i class="fa fa-search"></i>
+							</div>
+						</div>
+		    <nav class="btn-navigation" role='navigation'>
+		      <ul>
+		        <li>
+		          <div class="btn-control rectangle" >
+		          </div>
+		        </li>
+		        <li>
+		          <div class="btn-control raya" >
+		          </div>
+		        </li>
+		        <li>
+		          <div class="btn-control circule" >
+		          </div>
+		        </li>
+		        <li>
+		          <div class="btn-control" >
+		          </div>
+		        </li>
+		        <li>
+		          <div class="btn-control" >
+		          </div>
+		        </li>
+		       	<li>
+		          <div class="btn-control" >
+		          </div>
+		        </li>
+		        <li>
+		          <div class="btn-control" >
+		          </div>
+		        </li>
+		        <li>
+		          <div class="btn-control" >
+		          </div>
+		        </li>
+		        <li>
+		          <div class="btn-control" >
+		          </div>
+		        </li>
+		      </ul>
+		    </nav>   
+		 </div><!-- ./ box -->
+		 <div id="box-chat">
+		 	<div class="title">
+		 		<marquee behavior="" direction="">hola me oyes?</marquee>
+		 	</div>
+		 	<div class="buzon">
+		 		<div class="listMsjs">
+			 		<ul class="messages">
+			 			<li class="buble">hola me oyes?</li>
+			 			<li class="buble">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, dolorum?</li>
+			 			<li class="buble">Lorem ipsum dolor sit amet, consectetur ?</li>
+			 			<li class="buble">Lorem ipsum dolor sit amet,  Voluptatem, dolorum?</li>
+			 			<li class="buble">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, neque.</li>
+			 		</ul>
+		 		</div>
+		 	</div>
+		 			
+		 	<div class="input-text">
+		 		<input type="text" placeholder="tu mensaje">
+		 	</div>
+		 </div>
+			<!-- date -->
+			<div class="date"> </div>
+			  <div class='circle colores hide pencil'>
+      <div><span style="background:#DB5B5B;"></span></div>
+      <div><span style="background:#F0820C;"></span></div>
+      <div><span style="background:#B4267C;"></span></div>
+      <div><span style="background:#AB3EE0;"></span></div>
+      <div><span style="background:#724AEA;"></span></div>
+      <div><span style="background:#DB5B5B;"></span></div>
+      <div><span style="background:#DB3333;"></span></div>
+      <div><span style="background:rgba(36,56,76,.9);"></span></div>
+      <div><span style="background:rgba(36,45,86,.9);"></span></div>
+      <div><span style="background:rgba(35,25,16,.9);"></span></div>
+      <div><span style="background:rgba(10,15,16,.9);"></span></div>
+      <div><span style="background:rgba(12,18,116,.9);"></span></div>
+      <div><span style="background:#433B49;"></span></div>
+  </div>
+
+  <div class='circle tamano hide'>
+    <div><span style="width:7px;height:7px;"></span></div>
+    <div><span style="width:11px;height:11px;"></span></div>
+    <div><span style="width:20px;height:20px;"></span></div>
+    <div><span style="width:35px;height:35px;"></span></div>
+    <div><span style="width:50px;height:50px;"></span></div>
+    <div><span style="width:55px;height:55px;"></span></div>
+    <div><span style="width:60px;height:60px;"></span></div>
+    <div><span style="width:65px;height:65px;"></span></div>
+    <div><span style="width:68px;height:68px;"></span></div>
+    <div><span style="width:70px;height:70px;"></span></div>
+    <div><span style="width:72px;height:72px;"></span></div>
+    <div><span style="width:79px;height:79px;"></span></div>
+    <div><span style="width:85px;height:85px;"></span></div>
+    <div><span style="width:92px;height:92px;"></span></div>
+  </div>
+  <div class="circle eraser hide">
+    <div><span style="width:7px;height:7px;"></span></div>
+    <div><span style="width:20px;height:20px;"></span></div>
+    <div><span style="width:30px;height:30px;"></span></div>
+    <div><span style="width:40px;height:40px;"></span></div>
+    <div><span style="width:45px;height:45px;"></span></div>
+    <div><span style="width:7px;height:7px;"></span></div>
+    <div><span style="width:20px;height:20px;"></span></div>
+    <div><span style="width:30px;height:30px;"></span></div>
+    <div><span style="width:40px;height:40px;"></span></div>
+    <div><span style="width:45px;height:45px;"></span></div>
+    <div><span style="width:55px;height:55px;"></span></div>
+    <div><span style="width:58px;height:58px;"></span></div>
+    <div><span style="width:62px;height:62px;"></span></div>
+  </div>
+    <article class="esquina-btn colores-btn">
+				  <i class="fa fa-pencil fa-1x"></i>
+    </article>
+    <article class="esquina-btn eraser-btn">
+					<i class="fa fa-eraser fa-ix"></i>
+    </article>
+
+<div id="wrap">
+	<div id="caja">
+		<div class="fondo-pizarra"></div>
+		<div id="settingBox" class="hide"></div>
+		<canvas id="blackboard" class="pizarra" width="1200" height="560"></canvas>
+		<canvas id="objetos" class="" width="1200" height="560"></canvas>
+	</div>
+</div>
+
+	<script src="js/script.js"></script>
+	<script src="js/pizarra.js"></script>
+	<script src="js/dashboard.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.slimscroll.js"></script>
+	<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+
+	<script>
+		/*
+			$('.box-left nav').slimScroll({
+				distance:'5px',
+				height:'auto',
+				width:'100%',
+				railVisible: true,
+    railOpacity: 0.1
+			})
+		*/
+			$('.box-left nav').mCustomScrollbar({
+					autoHideScrollbar:true,
+					scrollInertia:600
+					//autoDraggerLength:false
+			})
+			$('.box-right nav').slimScroll({
+				distance:'5px',
+				height:'37.4em',
+				width:'12em',
+				railVisible: true,
+    railOpacity: 0.1,
+    position:'left'
+			})
+
+			$('.listMsjs').slimScroll({
+				distance:'5px',
+				height:'16.8em',
+				width:'100%',
+				railVisible: false,
+    railOpacity: 0.1
+			})
+			
+	</script>
+</body>
+</html>

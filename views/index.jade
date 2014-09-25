@@ -1,0 +1,183 @@
+extends layout
+block content
+    .box.box-left
+     .logo
+         i.fa.fa-cube.fa-5x
+       #controls
+         .input-search
+           input.search(type='text', placeholder='figura')
+           i.fa.fa-search
+       nav(role='navigation')
+         .btn-navigation
+           ul.btn-left
+             li
+               .btn-control.rectangle(name='rectangle')
+             li
+               .btn-control.circule(name='circle')
+             li
+               .btn-control.triangle(name='triangle')
+             li
+               .btn-control
+             li
+               .btn-control
+             li
+               .btn-control
+             li
+               .btn-control
+             li
+               .btn-control
+             li
+               .btn-control
+           ul.btn-right
+             li
+               .btn-control
+             li
+               .btn-control
+             li
+               .btn-control
+             li
+               .btn-control
+             li
+               .btn-control
+             li
+               .btn-control
+             li
+               .btn-control
+             li
+               .btn-control
+             li
+               .btn-control
+    .box.box-right
+     .logo
+         i.fa.fa-cubes.fa-5x
+     #controls
+         .input-search
+           input.search(type='text', placeholder='archivo')
+           i.fa.fa-search
+     nav.btn-navigation(role='navigation')
+         ul
+           li
+             .btn-control.rectangle
+           li
+             .btn-control.raya
+           li
+             .btn-control.circule
+           li
+             .btn-control
+           li
+             .btn-control
+           li
+             .btn-control
+           li
+             .btn-control
+           li
+             .btn-control
+           li
+             .btn-control
+    #box-chat
+       .title
+         marquee(behavior='', direction='') hola me oyes?
+       .buzon
+         .listMsjs
+           ul.messages
+             li.buble hola me oyes?
+             li.buble Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, dolorum?
+             li.buble Lorem ipsum dolor sit amet, consectetur ?
+             li.buble Lorem ipsum dolor sit amet,  Voluptatem, dolorum?
+             li.buble Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, neque.
+       .input-text
+         input(type='text', placeholder='tu mensaje')
+    .date  
+    .circle.colores.hide.pencil
+       div
+         span(style='background: #DB5B5B;')
+       div
+         span(style='background: #F0820C;')
+       div
+         span(style='background: #B4267C;')
+       div
+         span(style='background: #AB3EE0;')
+       div
+         span(style='background: #724AEA;')
+       div
+         span(style='background: #DB5B5B;')
+       div
+         span(style='background: #DB3333;')
+       div
+         span(style='background: rgba(36,56,76,.9);')
+       div
+         span(style='background: rgba(36,45,86,.9);')
+       div
+         span(style='background: rgba(35,25,16,.9);')
+       div
+         span(style='background: rgba(10,15,16,.9);')
+       div
+         span(style='background: rgba(12,18,116,.9);')
+       div
+         span(style='background: #433B49;')
+    .circle.tamano.hide
+       div
+         span(style='width: 7px; height: 7px;')
+       div
+         span(style='width: 11px; height: 11px;')
+       div
+         span(style='width: 20px; height: 20px;')
+       div
+         span(style='width: 35px; height: 35px;')
+       div
+         span(style='width: 50px; height: 50px;')
+       div
+         span(style='width: 55px; height: 55px;')
+       div
+         span(style='width: 60px; height: 60px;')
+       div
+         span(style='width: 65px; height: 65px;')
+       div
+         span(style='width: 68px; height: 68px;')
+       div
+         span(style='width: 70px; height: 70px;')
+       div
+         span(style='width: 72px; height: 72px;')
+       div
+         span(style='width: 79px; height: 79px;')
+       div
+         span(style='width: 85px; height: 85px;')
+       div
+         span(style='width: 92px; height: 92px;')
+    .circle.eraser.hide
+       div
+         span(style='width: 7px; height: 7px;')
+       div
+         span(style='width: 20px; height: 20px;')
+       div
+         span(style='width: 30px; height: 30px;')
+       div
+         span(style='width: 40px; height: 40px;')
+       div
+         span(style='width: 45px; height: 45px;')
+       div
+         span(style='width: 7px; height: 7px;')
+       div
+         span(style='width: 20px; height: 20px;')
+       div
+         span(style='width: 30px; height: 30px;')
+       div
+         span(style='width: 40px; height: 40px;')
+       div
+         span(style='width: 45px; height: 45px;')
+       div
+         span(style='width: 55px; height: 55px;')
+       div
+         span(style='width: 58px; height: 58px;')
+       div
+         span(style='width: 62px; height: 62px;')
+    article.esquina-btn.colores-btn
+       i.fa.fa-pencil.fa-1x
+    article.esquina-btn.eraser-btn
+       i.fa.fa-eraser.fa-ix
+    #wrap
+       #caja
+         .fondo-pizarra
+         #settingBox.hide
+         canvas#blackboard.pizarra(width='1200', height='560')
+         canvas#objetos(width='1200', height='560')

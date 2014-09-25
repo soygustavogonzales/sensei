@@ -1,0 +1,28 @@
+{
+  "name": "sensei",
+  "version": "0.0.0",
+  "homepage": "https://github.com/soygustavogonzales/NODEJS",
+  "authors": [
+    "Gustavo <gustavo.gonda@gmail.com>"
+  ],
+  "dependencies":{
+    "angular":"1.2.18",
+    "angular-route":"latest",
+    "angular-animate":"latest",
+    "jquery":"latest",
+    "jquery-ui":"latest",
+    "flatstrap":"latest",
+    "malihu-custom-scrollbar-plugin":"latest",
+    "components-font-awesome":"latest",
+    "slimScroll":"latest",
+    "fabric":"latest"
+    },
+  "description": "sensei web",
+  "keywords": [
+    "angular",
+    "nodejs",
+    "express"
+  ],
+  "license": "MIT",
+  "private": true
+}

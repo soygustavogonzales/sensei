@@ -11,8 +11,8 @@ lib-cov
 pids
 logs
 results
-
-node_modules
+#carpeta de los modulos instalables de nodejs
+node_modules/
 npm-debug.log
 
 #Carpetas solo utilizadas en desarrollo, en produccion solo es util:
