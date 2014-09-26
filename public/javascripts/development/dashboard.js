@@ -167,6 +167,9 @@
       } else if(e.clientX < (screen.width - 180)){
         boxRight.classList.remove('show-right');
       }
+      if(e.clientX > screen.width/3 && e.clientX < (screen.width - screen.width/3) && e.clientY < 5 ){
+        console.log("abrir arriba")
+      }
     }
 
     for (var i = div.length - 1; i >= 0; i--) {

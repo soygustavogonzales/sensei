@@ -110,7 +110,7 @@ h1,.info > h1 {
 }
 .box #controls {
   width: 100%;
-  margin: 0em auto;
+  margin: 0em auto .4em;
 }
 .box #controls .input-search {
   display: block;
@@ -147,28 +147,28 @@ h1,.info > h1 {
   border-top-right-radius: .2em;
 }
 #box-chat .buzon {
-  box-shadow: inset 0 0 .9em #333;
-  padding: .5em .3em;
+  height: 17em;
   
 }
 #box-chat .buzon .slimScrollDiv{
   padding: 0em 0em;
-  
 }
 #box-chat .buzon .listMsjs{
-  height: 16.8em;
-  padding: .1em .1em;
+  height: 100%;
+  padding: .5em .1em;
   background: rgba(250,252,240,1);
 }
 #box-chat .input-text {
-  height: 2.2em;
+  height: 2.4em;
   width: 100%;
   display: none;
 }
 #box-chat .input-text input {
   padding: .2em .4em;
   width: 100%;
-  font-size: 1em;
+  font-size: 1.3em;
+  font-weight: 500;
+  height: 100%;
   color: rgba(126,116,116,1);
   outline: none;
   font-family: 'Open Sans Condensed', sans-serif;
@@ -177,7 +177,7 @@ h1,.info > h1 {
 
 }
 #box-chat:hover {
-  bottom: 0em;
+  bottom: -.3em;
   -webkit-transition: bottom .25s ease-in-out;
   transition: bottom .25s ease-in-out;
   
