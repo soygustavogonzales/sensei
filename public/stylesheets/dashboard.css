@@ -256,7 +256,7 @@ ul .buble:after {
   visibility:visible;
   transition:opacity 1s ease;
 }
-.show{
+.show-left{
   left:0;
   transition:left 1s ease;
   -webkit-animation:none;
@@ -265,6 +265,10 @@ ul .buble:after {
   right: 0em;
   transition:right 1s ease;
   -webkit-animation:none;
+}
+.show-top{
+  top:0em !important;
+  transition:top .55s ease;
 }
 .rectangle{
   background: url(/images/rectangulo.png) no-repeat;
@@ -294,6 +298,46 @@ ul .buble:after {
   font-family: 'Open Sans Condensed', sans-serif;
   font-weight: 400;
   text-align: center;
+}
+.superior {
+  padding: .4em 8em;
+  position: fixed;
+  text-align: left;
+  top: -3em;
+  z-index: 5;
+  height: 4em;
+  width: 100%;
+  -webkit-transition:top 1s ease;
+  transition:top 1s ease;
+}
+  
+.superior #menu {
+
+}
+.superior #menu #logo{
+  font-size: 2.5em;
+  text-align: left;
+  width: 10%;
+  display: inline-block;
+}
+
+.superior #menu #buttons {
+  display: inline-block;
+  width: auto;
+  font-size: 1.3em;
+  margin:.5em 0 0 0;
+  text-align: left;
+  position: absolute;
+  right: 15em;
+}
+.superior #menu #buttons ul li{
+  list-style-type: none;
+  display: inline-block;
+  margin: 0 0 0 2.2em;
+}
+.superior #menu #buttons ul li div i{
+  font-size: 1.3em;
+  color: rgba(119,119,119,1);
 }
 
 @-webkit-keyframes esquinaAction {

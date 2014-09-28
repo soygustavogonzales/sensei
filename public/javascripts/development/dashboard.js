@@ -8,7 +8,8 @@
   articleEraser = document.querySelector('.eraser-btn'),
   boxLeft = document.querySelector('.box-left'),
   date = document.querySelector('.date'),
-  boxRight = document.querySelector('.box-right');
+  boxRight = document.querySelector('.box-right'),
+  superior = document.querySelector('.superior');
 
     var onAnimation = function(){
       
@@ -150,27 +151,36 @@
     var menu = function (e){
       var umbralWidth = screen.width - 5;
       if (e.clientX < '5'&& e.clientY > '100' && e.clientY < '550'){
-        boxLeft.classList.add('show');
+        /*abrir panel izquierdo*/
+        boxLeft.classList.add('show-left');
         date.classList.add('showClock');
         // show clock
         clock();
       // left = 150px
       } 
       else if(e.clientX > '150'){
-          boxLeft.classList.remove('show');
+          boxLeft.classList.remove('show-left');
           date.classList.remove('showClock');
       }
 
       if(e.clientX > umbralWidth && e.clientY > '100' && e.clientY < '550'){
+        /*abrir panel derecho*/
         console.log("abrir derecha")
         boxRight.classList.add('show-right');
       } else if(e.clientX < (screen.width - 180)){
         boxRight.classList.remove('show-right');
       }
       if(e.clientX > screen.width/3 && e.clientX < (screen.width - screen.width/3) && e.clientY < 5 ){
+        /*abrir panel superior*/
         console.log("abrir arriba")
+        superior.classList.add('show-top')
+        //superior.style.top = 0
+      }else if(e.clientY > (4*14)){
+        superior.classList.remove('show-top')
+        //superior.style.top = '-3em'
       }
     }
+        
 
     for (var i = div.length - 1; i >= 0; i--) {
       div[i].onclick = function (){

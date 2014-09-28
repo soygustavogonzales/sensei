@@ -1,0 +1,12 @@
+.box.box-right
+  .logo
+    i.fa.fa-cubes.fa-5x
+  #controls
+    .input-search
+      input.search(placeholder="archivo")
+      i.fa.fa-search
+  nav.btn-navigation(role="navigation")
+    ul
+      each li in [{class:'triangle',name:'triangle'},{class:'circule',name:'circle'},{class:'rectangle',name:'rectangle'},{class:'triangle',name:'triangle'},{class:'circule',name:'circle'},{class:'rectangle',name:'rectangle'},{class:'triangle',name:'triangle'},{class:'circule',name:'circle'},{class:'rectangle',name:'rectangle'}]
+        li
+          .btn-control(class="#{li.class}",name="#{li.name}")

@@ -1,0 +1,10 @@
+.superior
+	#menu
+		#logo
+			span|Sensei
+		#buttons
+			ul
+				each btn in [{name:'profile',icon:'fa-user'},{name:'reload',icon:'fa-usd'},{name:'notification',icon:'fa-exclamation'},{name:'outSession',icon:'fa-sign-out'}]
+					li
+						.btn(class="#{btn.name}",name="#{btn.name}")
+							i(class="fa #{btn.icon}")

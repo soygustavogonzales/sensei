@@ -1,0 +1,17 @@
+.box.box-left
+  .logo
+    i.fa.fa-cube.fa-5x
+  #controls
+    .input-search
+      input.search(type="text",placeholder="figura")
+      i.fa.fa-search
+  nav(role='navigation')
+    .btn-navigation
+      ul.btn-left
+        each li in [{class:'triangle',name:'triangle'},{class:'circule',name:'circle'},{class:'rectangle',name:'rectangle'},{class:'triangle',name:'triangle'},{class:'circule',name:'circle'},{class:'rectangle',name:'rectangle'},{class:'triangle',name:'triangle'},{class:'circule',name:'circle'},{class:'rectangle',name:'rectangle'}]
+          li
+            .btn-control(class="#{li.class}",name="#{li.name}")
+      ul.btn-right
+        each li in [{class:'triangle',name:'triangle'},{class:'circule',name:'circle'},{class:'rectangle',name:'rectangle'},{class:'triangle',name:'triangle'},{class:'circule',name:'circle'},{class:'rectangle',name:'rectangle'},{class:'triangle',name:'triangle'},{class:'circule',name:'circle'},{class:'rectangle',name:'rectangle'}]
+          li
+            .btn-control(class="#{li.class}",name="#{li.name}")
