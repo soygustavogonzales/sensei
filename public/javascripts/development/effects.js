@@ -5,8 +5,8 @@
 			})
 			$('.box-right nav').slimScroll({
 				distance:'5px',
-				height:'37.4em',
-				width:'12em',
+				height:'40.1em',
+				width:'8em',
 				railVisible: true,
     railOpacity: 0.1,
     position:'left'
