@@ -7,6 +7,6 @@
       i.fa.fa-search
   nav.btn-navigation(role="navigation")
     ul
-      each li in [{class:'fa fa-google',name:'triangle'},{class:'fa fa-file-o',name:'triangle'},{class:'fa fa-youtube',name:'circle'},{class:'fa fa-file-pdf-o',name:'rectangle'},{class:'fa fa-file-word-o',name:'triangle'},{class:'fa fa-file-excel-o',name:'circle'},{class:'fa fa-file-powerpoint-o',name:'rectangle'},{class:'fa fa-file-movie-o',name:'triangle'},{class:'fa fa-paper-plane-o',name:'circle'},{class:'fa fa-file-picture-o',name:'circle'}]
-        li
-          .btn-control(class="#{li.class}",name="#{li.name}")
+      each item in [{class:'fa fa-google',name:1,dataNro:1},{class:'fa fa-file-o',name:2,dataNro:2},{class:'fa fa-youtube',name:3,dataNro:3},{class:'fa fa-file-pdf-o',name:4,dataNro:4},{class:'fa fa-file-word-o',name:5,dataNro:5},{class:'fa fa-file-excel-o',name:6,dataNro:6},{class:'fa fa-file-powerpoint-o',name:7,dataNro:7},{class:'fa fa-file-movie-o',name:8,dataNro:8},{class:'fa fa-paper-plane-o',name:9,dataNro:9},{class:'fa fa-file-picture-o',name:10,dataNro:10}]
+        li(draggable="true")
+          .btn-control(class="#{item.class}",name="#{item.name}",data-nro="#{item.dataNro}")
