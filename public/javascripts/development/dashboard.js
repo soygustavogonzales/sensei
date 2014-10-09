@@ -14,7 +14,7 @@
   globo = $('.globo'),
   flechita = $('.globo .flechita');
 
-  console.log(itemsRight)
+//  console.log(itemsRight)
 
     var onAnimation = function(){
       
@@ -186,7 +186,63 @@
       }
     }
         
+    var showGlobo = function(e) {
+      //console.log(this);//this representa al elemento-no al conjunto de los mismos- sobre el que se esta disparando el evento.
+      var cantItem = itemsRight.length,
+      altoItem = $(itemsRight[0]).height(),
+      ant = e.relatedTarget.dataset.nro,
+      actual = $(e.target).data('nro'),
+      umbral = altoItem/2;
+      //console.log(e.toElement)
+      switch(true){
+        case(actual<ant):
+          umbral = umbral*(-1)
+        break;
+        case(ant==null):
+          umbral = 0
+        break;
+        default:
+          umbral = umbral
+      }
 
+      var factor = (10*14)*(-1);
+      var top = e.clientY + factor + umbral;
+      globo.normalPosition = true;
+      flechita.normalTopPosition = getComputedStyle(flechita[0]).top;
+      flechita.normalPosition = true;
+      if(globo.hasClass('hide')){
+        if(cantItem==actual){//hover sobre el ultimo elemento
+          top = top - (2*14);
+          globo.normalPosition = false;
+          console.log("hover sobre el ultimo ele")
+          //flechita.css('top',(parseInt(flechita.normalTopPosition)+(3*14))+'px')
+          //flechita.normalPosition = false
+        }
+        globo.css('top',top+'px')
+        //globo.toggleClass('hide');
+        globo.toggleClass('show');
+        globo.toggleClass('addGloboAtn')
+        setTimeout(function(){
+          globo.css({
+            'left':'70em'
+          })
+        },1550)
+      }else{
+        /*
+        if(!flechita.normalPosition){
+          flechita.css('top',flechita.normalTopPosition)
+          flechita.normalPosition = true
+        }
+        */
+          
+        globo.toggleClass('hide');
+        setTimeout(function(){
+          globo.css({
+            'left':'60em'
+          })
+        },1550)
+      }
+    }
     for (var i = div.length - 1; i >= 0; i--) {
       div[i].onclick = function (){
         console.log("click on color")
@@ -214,62 +270,5 @@ tamano.addEventListener('mouseleave',offAnimation,false)
 circleEraser.addEventListener('mouseleave',offAnimationEraser,false)
 circleEraser.addEventListener('mousemove',animationRotationEraser,false)
 tamano.addEventListener('mousemove',animationRotationTamano,false)
-itemsRight.hover(function(e) {
-  //console.log(this);//this representa al elemento-no al conjunto de los mismos- sobre el que se esta disparando el evento.
-  var cantItem = itemsRight.length,
-  altoItem = $(itemsRight[0]).height(),
-  ant = e.relatedTarget.dataset.nro,
-  actual = $(e.target).data('nro'),
-  umbral = altoItem/2;
-  //console.log(e.toElement)
-  switch(true){
-    case(actual<ant):
-      umbral = umbral*(-1)
-    break;
-    case(ant==null):
-      umbral = 0
-    break;
-    default:
-      umbral = umbral
-  }
-
-  var factor = (10*14)*(-1);
-  var top = e.clientY + factor + umbral;
-  globo.normalPosition = true;
-  flechita.normalTopPosition = getComputedStyle(flechita[0]).top;
-  flechita.normalPosition = true;
-  if(globo.hasClass('hide')){
-    if(cantItem==actual){//hover sobre el ultimo elemento
-      top = top - (2*14);
-      globo.normalPosition = false;
-      console.log("hover sobre el ultimo ele")
-      //flechita.css('top',(parseInt(flechita.normalTopPosition)+(3*14))+'px')
-      //flechita.normalPosition = false
-    }
-    globo.css('top',top+'px')
-    //globo.toggleClass('hide');
-    globo.toggleClass('show');
-    globo.toggleClass('addGloboAtn')
-    setTimeout(function(){
-      globo.css({
-        'left':'70em'
-      })
-    },1550)
-  }else{
-    /*
-    if(!flechita.normalPosition){
-      flechita.css('top',flechita.normalTopPosition)
-      flechita.normalPosition = true
-    }
-    */
-      
-    globo.toggleClass('hide');
-    setTimeout(function(){
-      globo.css({
-        'left':'60em'
-      })
-    },1550)
-  }
-
-});
+itemsRight.hover(showGlobo);
     

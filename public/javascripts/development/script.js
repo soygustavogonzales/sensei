@@ -19,6 +19,25 @@
 		height:hScreen
 	})
 	;
+
+	whiteboard.on('object:selected', function(e) {
+		if(e.target){
+			l.log("SELECCIONASTE UN ELEMENTO")
+			l.log(e.target)
+			showAnimation()
+			//LANZAR EL RADIALCOLORS Y OPCIONES DE CONFIGURACION
+		}
+	});
+	whiteboard.on('mouse:down', function(e) {
+		if(!e.target){
+			l.log("SELECCIONASTE al vacio")
+			ocultar()
+		}
+	});
+	whiteboard.on('selection:created', function(e) {
+		l.log("*CREATED*")
+		l.log(e)
+	});
   /*
 
   cad es generado mediante: 
@@ -143,10 +162,10 @@
 
 	function selectionableEle (e){
 			if(!jalandoEle){
-				console.log("mousedown on box")
+				//console.log("mousedown on box")
 				jalandoEle = !jalandoEle
 				ele = $(this).attr('name')
-				console.log(ele)
+				//console.log(ele)
 				showPhantomEle(ele)
 				$cont.css({
 					top:(e.clientY-75),
@@ -238,6 +257,10 @@
 			stroke:opt.stroke,
 			shadow: opt.shadow
 		})
+		rect.on('selected',function(e,f){
+			l.log("seleccionaste a rect")
+			l.log(e)
+		})
 		canvas.add(rect)
 	}
 
@@ -295,6 +318,101 @@
 $btnElements.mousedown(selectionableEle);
 $body.mousemove(draggableEle);
 $body.mouseup(dropableEle);
+
+
+/***************************************/
+
+     var points = 0,
+          radius = 0,
+          rotate = 0;
+
+      function draw_points(points, radius, rotate) {
+        var elm       = 36;
+        var r         = radius;
+        var items     = points;
+        var rotation  = rotate * (Math.PI / 180);
+
+        var $this     = $('#center');
+        var width     = $this.width();
+        var height    = $this.height();
+        var count     = 1;
+        var elm_w     = elm / 2;
+        var elm_h     = elm / 2;
+        var parent_x  = width / 2;  //offset.left;// + width / 2;
+        var parent_y  = height / 2; //offset.top;// + height / 2;
+        var colors = [
+                      'rgba(234,56,45,1)',
+                      'rgba(234,60,80,1)',
+                      'rgba(254,80,90,1)',
+                      'rgba(200,80,90,1)',
+                      'rgba(150,180,190,1)',
+                      'rgba(120,100,190,1)',
+                      'rgba(50,50,50,1)',
+                      '#7BB200',
+                      'rgba(20,20,20,1)',
+                      'rgba(10,10,10,1)',
+                      'rgba(40,40,40,1)'
+                      ]
+
+        $("#center").html('');
+        $('#output_css').html('');
+
+        $('#output').append( '<div>.point-container { position: relative; } </div>');
+
+        for(var i = items; i > 0; i--) {
+
+          var x = parent_x + r * Math.cos(2 * Math.PI * i / items + rotation) - elm_w;
+          var y = parent_y + r * Math.sin(2 * Math.PI * i / items + rotation) - elm_h;
+          var $point = $('<div></div>')
+          $point.addClass('point')
+          $point.css({
+            left:x+"px",
+            top:y+"px",
+            background:colors[i]
+          })
+          //$point.text(count)
+          $("#center").append($point);
+
+          count = count + 1;
+        }
+
+      }
+
+      function update_points(num) {
+        points = num;
+        draw_points(points, radius, rotate);
+      }
+      function update_radius(num) {
+        radius = num;
+        draw_points(points, radius, rotate);
+      }
+      //window.update_radius = update_radius;
+      function update_rotate(num) {
+        rotate = num;
+        draw_points(points, radius, rotate);
+      }
+
+      update_points(10)
+        
+      function showAnimation () {
+      	$('#radialColors').removeClass('hide');
+        var r_ = 0,a = 0;
+        var timer = setInterval(function(){
+
+          update_radius(r_)
+          update_rotate(a*2.8)
+          r_ = r_+ (a / 3.4)
+          a++
+        },15)
+        setTimeout(function(){
+          clearInterval(timer)
+        },550)
+      }
+        
+      function ocultar() {
+      	$('#radialColors').addClass('hide');
+        update_radius(0)
+      }
 
 
 }(window,document,undefined,jQuery)
