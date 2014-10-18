@@ -97,3 +97,27 @@
 		#wrap{
 			padding: 0em;
 		}
+		#videoThisUser{
+			position:absolute;
+		 left:.8em;
+		 bottom:.8em;
+		 height:12em;
+		 width:12em;
+		 border:.1em dotted black;
+			z-index: 5;
+		}
+		#remoteVideo{
+		 position:absolute;
+		 right:20px;
+		 top:20px;
+		 height:200px;
+		 width:200px;
+		 display:inline-block;
+		 border:1px dotted black;
+			z-index: 5;
+		}
+		#remoteVideo video {
+			z-index: 5;
+			width:100%;
+			height:100%;
+		} 

@@ -15,7 +15,10 @@
     "malihu-custom-scrollbar-plugin":"latest",
     "components-font-awesome":"latest",
     "slimScroll":"latest",
-    "fabric":"latest"
+    "fabric":"latest",
+    "firebase":"latest",
+    "angularfire":"latest",
+    "simpleWebRTC":"latest"
     },
   "description": "sensei web",
   "keywords": [
