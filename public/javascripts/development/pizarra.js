@@ -36,7 +36,10 @@
 	  y1 = Math.floor((e.pageY - offset.top) / obj.pixSize - 1);
    var x0 = (obj.lastPoint == null) ? x1 : obj.lastPoint[0];
    var y0 = (obj.lastPoint == null) ? y1 : obj.lastPoint[1];	  
-   obj.pixelDataRef.child(x0 + ":" + y0).remove();
+   for(var i = 0;i <=8 ;i++){
+   	obj.pixelDataRef.child((x0+i) + ":" + (y0+i)).remove();
+   }
+
 		}
 		Board.prototype.drawLineOnMouseMove = function(e,obj){
 
