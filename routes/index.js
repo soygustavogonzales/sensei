@@ -6,7 +6,7 @@ router.get('/blackboard', function(req, res) {
 		/* Usando este URI.../blackboard?roomId=132&userId=oswaldo*/
 		console.log(req.query.roomId) 
 		console.log(req.query.userId) 
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Sensei' });
 });
 
 module.exports = router;
