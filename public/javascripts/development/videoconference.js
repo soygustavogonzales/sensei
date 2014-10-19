@@ -9,6 +9,8 @@ var webrtc = new SimpleWebRTC({
 
 webrtc.on('readyToCall', function () {
   // you can name it anything
-  webrtc.joinRoom('myroomSensei');
+  var uri = URI(location.href).search(true)//URI is a object , using library URI.js, see in bower
+  var roomId = uri.roomId
+  webrtc.joinRoom(roomId);
 
 });

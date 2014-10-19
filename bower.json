@@ -18,7 +18,8 @@
     "fabric":"latest",
     "firebase":"latest",
     "angularfire":"latest",
-    "simpleWebRTC":"latest"
+    "simpleWebRTC":"latest",
+    "URIjs":"latest"
     },
   "description": "sensei web",
   "keywords": [

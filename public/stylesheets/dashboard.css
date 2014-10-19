@@ -209,8 +209,6 @@ h1,.info > h1 {
 
 ul .buble {
   border-radius: 5px;
-  background: #9bc2e8;
-  //box-shadow: 2px 3px 10px 0.1em #333;
   list-style-type: none;
   padding: .6em;
   display: table;
@@ -225,17 +223,35 @@ ul .buble:not(:first-child):not(:first-child) {
   margin: 1.1em 9px;
 }
 
-ul .buble:after {
+ul .buble-left:after {
   content: "";
   width: 15px;
   height: 10px;
   background: transparent;
   border-top: 10px solid #9bc2e8;
-  border-left: 4px solid transparent;
-  border-right: 11px solid transparent;
+  border-left: 1px solid transparent;
+  border-right: 14px solid transparent;
   position: relative;
   top: 2.4em;
   left: 3%;
+}
+ul .buble-left{
+  background: #9bc2e8;
+}
+ul .buble-right:after {
+  content: "";
+  width: 15px;
+  height: 10px;
+  background: transparent;
+  border-top: 10px solid #EF9DB1;
+  border-left: 14px solid transparent;
+  border-right: 1px solid transparent;
+  position: relative;
+  top: 2.4em;
+  left: 3%;
+}
+ul .buble-right{
+  background: #EF9DB1;
 }
 .date {
   position: absolute;

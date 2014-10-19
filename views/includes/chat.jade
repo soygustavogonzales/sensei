@@ -1,12 +1,10 @@
-#box-chat
+#box-chat(ng-controller="ListMessage")
   .title
     marquee|hello listened me!
   .buzon
     .listMsjs
       ul.messages
-        li.buble|hello listened me!
-        li.buble|Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, dolorum?
-        li.buble|Lorem ipsum dolor sit amet,  Voluptatem, dolorum?
-        li.buble|Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, neque.
+        li(ng-repeat="(key,val) in messages")
+          div.buble(ng-class="metodo(val.user)")|{{val.message}}
   .input-text
-    input(placeholder="mi mensaje")
+    input(ng-model="message",placeholder="mi mensaje",ng-keypress="sendMessage($event)")

@@ -2,9 +2,10 @@
   $(document).ready(function () {
   //Set up some globals
   var pixSize = 1, lastPoint = null, currentColor = "000", mouseDown = 0;
-
+  var uri = URI(location.href).search(true)//URI is a object , using library URI.js, see in bower
+  var roomId = uri.roomId
   //Create a reference to the pixel data for our drawing.
-  var pixelDataRef = new Firebase('https://senseiapp.firebaseio.com/');
+  var pixelDataRef = new Firebase('https://senseiapp.firebaseio.com/rooms/'+roomId);
 
   // Set up our canvas
   var myCanvas = document.getElementById('blackboard');
