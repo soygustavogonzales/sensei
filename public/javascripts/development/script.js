@@ -11,7 +11,7 @@
 	$box =$('.box'), 
 	$caja = $('#caja'),
 	$pencil = $('.pencil'),
-	$eraser = $('.eraser'),
+	$eraser = $('.eraser-btn'),
 	$btnElements = $('.box-left .btn-control'),
 	whiteboard = new fabric.Canvas('objetos',{
 		backgroundColor:'transparent',
@@ -84,6 +84,7 @@
 			height:150,
 			selection:false
 	})
+
 	var $cont = $tempCanvas.parent()
 	$cont.addClass('hide')
 	$cont.css({
@@ -98,6 +99,8 @@
 			})
 		}
 		$canvas.activate = true
+		board.activatedEraser = false;
+		
 	}
 
 	function disabledPencilWrite () {
@@ -109,7 +112,17 @@
 		$canvas.activate = false
 	}
 
+function activatedEraser (argument) {
+		if(!$canvas.activate){//si esta desactivado
+			$canvas.css({
+				'z-index':4
+			})
+		}
+		console.log("eraser activate")
+		board.activatedEraser = true;
+}
 	$pencil.click(enabledPencilWrite)
+	$eraser.click(activatedEraser);
 	$box.mouseleave(disabledPencilWrite)
 	
 	function showPhantomEle (nomEle) {
