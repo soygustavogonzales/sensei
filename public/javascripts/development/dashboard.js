@@ -246,6 +246,7 @@
     for (var i = div.length - 1; i >= 0; i--) {
       div[i].onclick = function (){
         console.log("click on color")
+        board.changeColor(this.querySelector('span').style.background)
       }
       div[i].onmouseover = function (){
         var span = this.children;
