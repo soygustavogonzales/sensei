@@ -99,8 +99,8 @@
 		}
 		#videoThisUser{
 			position:absolute;
-		 left:.8em;
-		 bottom:.8em;
+		 left:10.6em;
+		 bottom:1.3em;
 		 height:12em;
 		 width:12em;
 		 border:.1em dotted black;
@@ -108,8 +108,8 @@
 		}
 		#remoteVideo{
 		 position:absolute;
-		 right:20px;
-		 top:20px;
+		 right:10.6em;
+		 top:1.3em;
 		 height:200px;
 		 width:200px;
 		 display:inline-block;

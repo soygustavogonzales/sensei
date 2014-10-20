@@ -6,9 +6,10 @@
 	$ele = null,
 	counter = 0,
 	$body = $(document.body),
-	hScreen = $body.height() ||screen.height - (24 + 61),//683
+	hScreen = $body.height(),
 	$canvas = $('.pizarra'),
-	$box =$('.box'), 
+	$canvasObjetos = $('#objetos'),
+	$box = $('.box'), 
 	$caja = $('#caja'),
 	$pencil = $('.pencil'),
 	$eraser = $('.eraser-btn'),
@@ -18,6 +19,9 @@
 		width:wScreen,
 		height:hScreen
 	})
+
+	$canvasUpper = $('.upper-canvas')
+	console.log(wScreen + " : " + hScreen)
 	;
 
 	whiteboard.on('object:selected', function(e) {
@@ -67,10 +71,14 @@
   */
   //whiteboard.loadFromJSON(cad)
   //whiteboard.loadFromDatalessJSON(cad2_)
-	$container = $('#objetos').parent()
+	$container = $canvasObjetos.parent()
 	$container.css({
 		position:'absolute'
 	})
+	$canvasObjetos[0].width = wScreen
+	$canvasObjetos[0].height = hScreen
+	$canvasUpper[0].width = wScreen
+	$canvasUpper[0].height = hScreen
 	$canvas[0].width = wScreen
 	$canvas[0].height = hScreen
 	$canvas.activate = false
