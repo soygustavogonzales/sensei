@@ -9,6 +9,8 @@ lib-cov
 *.swp
 #todos(*) los archivos terminados en _ con cualquier(*) extension
 *_.*
+#archivos de backup que utilizo para hacer arreglos temporales
+*.bkp.*
 pids
 logs
 results
