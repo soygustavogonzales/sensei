@@ -345,7 +345,8 @@ $body.mouseup(dropableEle);
 
      var points = 0,
           radius = 0,
-          rotate = 0;
+          rotate = 0,
+          duration = 550;
 
       function draw_points(points, radius, rotate) {
         var elm       = 36;
@@ -427,7 +428,7 @@ $body.mouseup(dropableEle);
         },15)
         setTimeout(function(){
           clearInterval(timer)
-        },550)
+        },duration)
       }
         
       function ocultar() {

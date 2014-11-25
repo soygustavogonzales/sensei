@@ -1,6 +1,6 @@
 {
   "name": "sensei-app",
-  "version": "0.0.1-3",
+  "version": "0.0.1-4",
   "main": "bin/www.js",
   "private": true,
   "scripts": {
