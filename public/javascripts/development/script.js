@@ -28,14 +28,14 @@
 		if(e.target){
 			l.log("SELECCIONASTE UN ELEMENTO")
 			l.log(e.target)
-			showAnimation()
+			rc.showAnimation()
 			//LANZAR EL RADIALCOLORS Y OPCIONES DE CONFIGURACION
 		}
 	});
 	whiteboard.on('mouse:down', function(e) {
 		if(!e.target){
 			l.log("SELECCIONASTE al vacio")
-			ocultar()
+			rc.ocultar()
 		}
 	});
 	whiteboard.on('selection:created', function(e) {
@@ -342,17 +342,22 @@ $body.mouseup(dropableEle);
 
 
 /***************************************/
+function RadialColors(){
 
-     var points = 0,
-          radius = 0,
-          rotate = 0,
-          duration = 550;
+     this.points = 10;
+     this.radius = 0;
+     this.rotate = 0;
+     this.duration = 800;
+ 				this.draw_points()
 
-      function draw_points(points, radius, rotate) {
+}//.radialColors;
+
+RadialColors.prototype.draw_points = function(points, radius, rotate){
+
         var elm       = 36;
-        var r         = radius;
-        var items     = points;
-        var rotation  = rotate * (Math.PI / 180);
+        var r         = this.radius;
+        var items     = this.points;
+        var rotation  = this.rotate * (Math.PI / 180);
 
         var $this     = $('#center');
         var width     = $this.width();
@@ -397,44 +402,47 @@ $body.mouseup(dropableEle);
 
           count = count + 1;
         }
+	
+}
+RadialColors.prototype.update_points = function(num){
+    this.points = num;
+    this.draw_points();
+}
+RadialColors.prototype.update_radius = function(num){
+    this.radius = num;
+    this.draw_points();
+}	
+RadialColors.prototype.update_rotate = function(num){
+     this.rotate = num;
+     this.draw_points();
+}	
+RadialColors.prototype.showAnimation = function(){
+	var self = this;
+     this.update_radius(150)
+   	$('#radialColors').removeClass('hide');
+   	/*
+     var r_ = 0,a = 0;
+     var timer = setInterval(function(){
 
-      }
+       self.update_radius(r_)
+       //self.update_rotate(a*2.8)
+       r_ = r_+ (a / 3.4)
+       a++
+       console.log(a)
+     },15)
 
-      function update_points(num) {
-        points = num;
-        draw_points(points, radius, rotate);
-      }
-      function update_radius(num) {
-        radius = num;
-        draw_points(points, radius, rotate);
-      }
-      //window.update_radius = update_radius;
-      function update_rotate(num) {
-        rotate = num;
-        draw_points(points, radius, rotate);
-      }
+     setTimeout(function(){
+       clearInterval(timer)
+     },this.duration)
+   	*/
+}
 
-      update_points(10)
-        
-      function showAnimation () {
-      	$('#radialColors').removeClass('hide');
-        var r_ = 0,a = 0;
-        var timer = setInterval(function(){
+RadialColors.prototype.ocultar = function() {
+  	$('#radialColors').addClass('hide');
+    this.update_radius(0)
+}        
 
-          update_radius(r_)
-          update_rotate(a*2.8)
-          r_ = r_+ (a / 3.4)
-          a++
-        },15)
-        setTimeout(function(){
-          clearInterval(timer)
-        },duration)
-      }
-        
-      function ocultar() {
-      	$('#radialColors').addClass('hide');
-        update_radius(0)
-      }
-
-
+var rc = new RadialColors()
+console.log(rc);
+//rc.showAnimation()
 }(window,document,undefined,jQuery)
