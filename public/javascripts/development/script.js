@@ -345,9 +345,11 @@ $body.mouseup(dropableEle);
 function RadialColors(){
 
      this.points = 10;
-     this.radius = 0;
+     this.radius = 150;
      this.rotate = 0;
      this.duration = 800;
+     this.$rc = $('#radialColors');
+     this.selectedColor = null;
  				this.draw_points()
 
 }//.radialColors;
@@ -391,6 +393,7 @@ RadialColors.prototype.draw_points = function(points, radius, rotate){
           var x = parent_x + r * Math.cos(2 * Math.PI * i / items + rotation) - elm_w;
           var y = parent_y + r * Math.sin(2 * Math.PI * i / items + rotation) - elm_h;
           var $point = $('<div></div>')
+          $point.click(this.updateCurrentColor.bind(this,$point[0].style));
           $point.addClass('point')
           $point.css({
             left:x+"px",
@@ -404,6 +407,11 @@ RadialColors.prototype.draw_points = function(points, radius, rotate){
         }
 	
 }
+RadialColors.prototype.updateCurrentColor = function(color){
+	this.selectedColor = color.backgroundColor;
+	//console.log(this.selectedColor)
+}
+
 RadialColors.prototype.update_points = function(num){
     this.points = num;
     this.draw_points();
@@ -417,29 +425,21 @@ RadialColors.prototype.update_rotate = function(num){
      this.draw_points();
 }	
 RadialColors.prototype.showAnimation = function(){
-	var self = this;
-     this.update_radius(150)
-   	$('#radialColors').removeClass('hide');
-   	/*
-     var r_ = 0,a = 0;
-     var timer = setInterval(function(){
+	if(this.$rc.hasClass('hide')){
+   	this.$rc.removeClass('hide');
+   	this.$rc.addClass('addOnRCAnimation');
+	}else{
+		console.log("restart")
+		this.ocultar()
+	 var timer2 = setTimeout(this.showAnimation.bind(this),500)
+		
+	}
 
-       self.update_radius(r_)
-       //self.update_rotate(a*2.8)
-       r_ = r_+ (a / 3.4)
-       a++
-       console.log(a)
-     },15)
-
-     setTimeout(function(){
-       clearInterval(timer)
-     },this.duration)
-   	*/
 }
 
-RadialColors.prototype.ocultar = function() {
-  	$('#radialColors').addClass('hide');
-    this.update_radius(0)
+RadialColors.prototype.ocultar = function(callback) {
+  	this.$rc.addClass('hide');
+  	this.$rc.removeClass('addOnRCAnimation');
 }        
 
 var rc = new RadialColors()
