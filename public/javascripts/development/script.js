@@ -342,26 +342,36 @@ $body.mouseup(dropableEle);
 
 
 /***************************************/
-function RadialColors(){
-
-     this.points = 10;
-     this.radius = 150;
-     this.rotate = 0;
-     this.duration = 800;
-     this.$rc = $('#radialColors');
+function RadialColors(opt){
+				var default_ = {
+					points:10,
+					radius:150,
+					rotate:0,
+					duration:800,
+					$rc:$('#radialColors'),
+					$center:$('#center')
+				} 
+				opt = $.extend(default_,opt);
+				
+     this.points = opt.points;
+     this.radius = opt.radius;
+     this.rotate = opt.rotate;
+     this.duration = opt.duration;
+     this.$rc = opt.$rc;
      this.selectedColor = null;
- 				this.draw_points()
+ 				this.$center = opt.$center
+ 				this.init();
 
 }//.radialColors;
 
-RadialColors.prototype.draw_points = function(points, radius, rotate){
-
+RadialColors.prototype.init = function(points, radius, rotate){
+//DRAW_POINTS : Se crean los circulos
         var elm       = 36;
         var r         = this.radius;
         var items     = this.points;
         var rotation  = this.rotate * (Math.PI / 180);
 
-        var $this     = $('#center');
+        var $this     = this.$center;
         var width     = $this.width();
         var height    = $this.height();
         var count     = 1;
@@ -383,10 +393,10 @@ RadialColors.prototype.draw_points = function(points, radius, rotate){
                       'rgba(40,40,40,1)'
                       ]
 
-        $("#center").html('');
-        $('#output_css').html('');
+        this.$center.html('');
+        //$('#output_css').html('');
 
-        $('#output').append( '<div>.point-container { position: relative; } </div>');
+        //$('#output').append( '<div>.point-container { position: relative; } </div>');
 
         for(var i = items; i > 0; i--) {
 
@@ -401,7 +411,7 @@ RadialColors.prototype.draw_points = function(points, radius, rotate){
             background:colors[i]
           })
           //$point.text(count)
-          $("#center").append($point);
+          this.$center.append($point);
 
           count = count + 1;
         }
@@ -412,24 +422,11 @@ RadialColors.prototype.updateCurrentColor = function(color){
 	//console.log(this.selectedColor)
 }
 
-RadialColors.prototype.update_points = function(num){
-    this.points = num;
-    this.draw_points();
-}
-RadialColors.prototype.update_radius = function(num){
-    this.radius = num;
-    this.draw_points();
-}	
-RadialColors.prototype.update_rotate = function(num){
-     this.rotate = num;
-     this.draw_points();
-}	
 RadialColors.prototype.showAnimation = function(){
 	if(this.$rc.hasClass('hide')){
    	this.$rc.removeClass('hide');
    	this.$rc.addClass('addOnRCAnimation');
 	}else{
-		console.log("restart")
 		this.ocultar()
 	 var timer2 = setTimeout(this.showAnimation.bind(this),500)
 		
@@ -442,7 +439,10 @@ RadialColors.prototype.ocultar = function(callback) {
   	this.$rc.removeClass('addOnRCAnimation');
 }        
 
-var rc = new RadialColors()
+var rc = new RadialColors({
+	$rc:$('#radialColors'),
+	$center:$('#center')
+})
 console.log(rc);
 //rc.showAnimation()
 }(window,document,undefined,jQuery)
