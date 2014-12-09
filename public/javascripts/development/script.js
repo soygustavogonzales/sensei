@@ -11,8 +11,6 @@
 	$canvasObjetos = $('#objetos'),
 	$box = $('.box'), 
 	$caja = $('#caja'),
-	$pencil = $('.pencil'),
-	$eraser = $('.eraser-btn'),
 	$btnElements = $('.box-left .btn-control'),
 	whiteboard = new fabric.Canvas('objetos',{
 		backgroundColor:'transparent',
@@ -99,8 +97,25 @@
 		position:'absolute',
 		'z-index':6
 	})
+/***************************/
+/*Pencil*/
+var Pencil = function(opt){	
+	var default_ = {
+		$eraser:null
+	}
+	opt = $.extend(default_, opt);
+	this.$pencil = opt.$pencil;
+	this.enable() 
+}
 
-	function enabledPencilWrite () {
+Pencil.prototype.enable = function(){
+	this.$pencil.on("click",this.activateWrite)
+}
+Pencil.prototype.disable = function(){
+	this.$pencil.off("click",this.activateWrite)
+}
+
+Pencil.prototype.activateWrite = function(){
 		if(!$canvas.activate){//si esta desactivado
 			$canvas.css({
 				'z-index':4
@@ -108,19 +123,40 @@
 		}
 		$canvas.activate = true
 		board.activatedEraser = false;
-		
-	}
-
-	function disabledPencilWrite () {
+}
+	
+Pencil.prototype.deactivateWrite = function(){
 		if($canvas.activate){
 			$canvas.css({
 				'z-index':2
 			})
 		}
-		$canvas.activate = false
-	}
+		$canvas.activate = false	
+}
 
-function activatedEraser (argument) {
+var oPencil = new Pencil({
+	$pencil:$('.pencil')
+});
+
+
+/*****************************/
+/*Eraser*/
+var Eraser = function(opt){
+	var default_ = {
+		$eraser:null
+	}
+	opt = $.extend(default_, opt);
+	this.$eraser = opt.$eraser;
+	this.enable()
+}
+
+Eraser.prototype.enable = function(){
+	this.$eraser.on("click",this.activate)
+}
+Eraser.prototype.disable = function(){
+	this.$eraser.off("click",this.activate);	
+}
+Eraser.prototype.activate = function(){
 		if(!$canvas.activate){//si esta desactivado
 			$canvas.css({
 				'z-index':4
@@ -128,10 +164,13 @@ function activatedEraser (argument) {
 		}
 		console.log("eraser activate")
 		board.activatedEraser = true;
-}
-	$pencil.click(enabledPencilWrite)
-	$eraser.click(activatedEraser);
-	$box.mouseleave(disabledPencilWrite)
+} 
+	
+var oEraser = new Eraser({
+	$eraser:$('.eraser-btn')
+});
+
+	$box.mouseleave(oPencil.deactivateWrite)
 	
 	function showPhantomEle (nomEle) {
 		switch(nomEle) {
