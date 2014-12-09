@@ -7,7 +7,6 @@
   articleColores = document.querySelector('.colores-btn'),
   articleEraser = document.querySelector('.eraser-btn'),
   boxLeft = document.querySelector('.box-left'),
-  date = document.querySelector('.date'),
   boxRight = document.querySelector('.box-right'),
   superior = document.querySelector('.superior'),
   itemsRight = $('.box-right nav ul li'),//todos los items dentro del lateral rigth
@@ -109,8 +108,20 @@
         !tamano.classList.contains('rotar-tam-pause')&&tamano.classList.add('rotar-tam-pause')
       }
     } 
+/**************************/
+/*Clock*/
+    var Clock = function(opt){
+      var default_ = {
+        date:null
+      }
+      opt = $.extend(default_,opt);
+      this.date = opt.date;
+      this.init();
+    };
+      
 
-    var clock = function (){
+    Clock.prototype.init = function(){
+
       var cT = new Date(),
           cD = cT.getDate(),
           cH = cT.getHours(),
@@ -145,27 +156,40 @@
       var month = m[cT.getMonth()];
 
       // Render html
-      date.innerHTML = 
+      this.date.innerHTML = 
         '<div class="clock">'+clk+'</div>'+
         '<ul class="day">'+
           '<li>'+day+'</li>'+
           '<li>'+cD+' de '+month+'</li>'+
         '</ul>';
-    }
+    };
+
+    Clock.prototype.activate = function(){
+      this.date.classList.add('showClock');
+    };
+    Clock.prototype.deactivate = function(){
+      this.date.classList.remove('showClock');
+    };
+    
+    var oClock = new Clock({
+      date:document.querySelector('.date')
+    });
+
+/*end Clock*/
 
     var menu = function (e){
       var umbralWidth = screen.width - 5;
       if (e.clientX < '5'&& e.clientY > '100' && e.clientY < '550'){
         /*abrir panel izquierdo*/
         boxLeft.classList.add('show-left');
-        date.classList.add('showClock');
         // show clock
-        clock();
+        oClock.activate();
       // left = 150px
       } 
       else if(e.clientX > '150'){
-          boxLeft.classList.remove('show-left');
-          date.classList.remove('showClock');
+        boxLeft.classList.remove('show-left');
+        oClock.deactivate();
+
       }
 
       if(e.clientX > umbralWidth && e.clientY > '100' && e.clientY < '550'){
