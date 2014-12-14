@@ -1,10 +1,10 @@
   var circle = document.querySelector('.colores'),
-  circleEraser = document.querySelector('.eraser'),
   tamano = document.querySelector('.tamano'),
   tamDiv = document.querySelectorAll('.tamano div'),
   div = document.querySelectorAll('.colores div'),
-  divEraser = document.querySelectorAll('.eraser div'),
   articleColores = document.querySelector('.colores-btn'),
+  circleEraser = document.querySelector('.eraser'),
+  divEraser = document.querySelectorAll('.eraser div'),
   articleEraser = document.querySelector('.eraser-btn'),
   boxLeft = document.querySelector('.box-left'),
   boxRight = document.querySelector('.box-right'),
@@ -50,47 +50,7 @@
       
     }
 
-    var onAnimationEraser = function() {
-      
-      document.removeEventListener('mousemove',menu,false)
-      circleEraser.classList.remove('hide')
-      for (var i = divEraser.length - 1; i >= 0; i--) {
-          divEraser.item(i).classList.add('animar')
-      };
-      var timer = setTimeout(function(){
-        for (var i = divEraser.length - 1; i >= 0; i--) {
-          divEraser.item(i).classList.add('expand')
-        };
-      },750)
-      
-    }
-    var offAnimationEraser = function() {
 
-      circleEraser.classList.add('hide')
-      for (var i = divEraser.length - 1; i >= 0; i--) {
-          divEraser.item(i).classList.remove('animar')
-      };
-      var timer = setTimeout(function(){
-        for (var i = divEraser.length - 1; i >= 0; i--) {
-          divEraser.item(i).classList.remove('expand')
-        };
-      },10)
-      document.addEventListener('mousemove',menu,false)
-
-    }
-    var animationRotationEraser = function (e) {
-
-      document.removeEventListener('mousemove',menu,false)
-
-      if(e.x <=5 && e.y <=110 && e.y >= 95){
-        this.classList.contains('rotar-tam-pause')&&this.classList.remove('rotar-tam-pause')
-        !this.classList.contains('rotar-tam')&&this.classList.add('rotar-tam')
-        !this.classList.contains('rotar-tam-running')&&this.classList.add('rotar-tam-running')
-      }else{
-        !this.classList.contains('rotar-tam-pause')&&this.classList.add('rotar-tam-pause')
-        this.classList.contains('rotar-tam-running')&&this.classList.remove('rotar-tam-running')
-      }
-    }
     
     var animationRotationTamano = function (e){
       //console.log("x: %d,y: %d",e.x,e.y)
@@ -170,7 +130,7 @@
     Clock.prototype.deactivate = function(){
       this.date.classList.remove('showClock');
     };
-    
+
     var oClock = new Clock({
       date:document.querySelector('.date')
     });
@@ -290,10 +250,12 @@
 
 document.addEventListener('mousemove',menu,false)
 articleColores.addEventListener('mouseenter',onAnimation,false)
-articleEraser.addEventListener('mouseenter',onAnimationEraser,false)
 tamano.addEventListener('mouseleave',offAnimation,false)
-circleEraser.addEventListener('mouseleave',offAnimationEraser,false)
-circleEraser.addEventListener('mousemove',animationRotationEraser,false)
+//articleEraser.addEventListener('mouseenter',onAnimationEraser,false)
+//.eraser-btn
+//circleEraser.addEventListener('mouseleave',offAnimationEraser,false)
+//.eraser
+//circleEraser.addEventListener('mousemove',animationRotationEraser,false)
 tamano.addEventListener('mousemove',animationRotationTamano,false)
 itemsRight.hover(showGlobo);
     
