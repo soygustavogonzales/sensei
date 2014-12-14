@@ -9,7 +9,6 @@
 	hScreen = $body.height(),
 	$canvas = $('.pizarra'),
 	$canvasObjetos = $('#objetos'),
-	$box = $('.box'), 
 	$caja = $('#caja'),
 	$btnElements = $('.box-left .btn-control'),
 	whiteboard = new fabric.Canvas('objetos',{
@@ -19,7 +18,7 @@
 	})
 
 	$canvasUpper = $('.upper-canvas')
-	console.log(wScreen + " : " + hScreen)
+//	console.log(wScreen + " : " + hScreen)
 	;
 
 	whiteboard.on('object:selected', function(e) {
@@ -100,7 +99,6 @@
 
 
 
-	$box.mouseleave(oPencil.deactivateWrite)
 	
 	function showPhantomEle (nomEle) {
 		switch(nomEle) {

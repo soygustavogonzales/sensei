@@ -1,3 +1,5 @@
+!function(window,undefined,$){
+
 /**************************/
 /*Clock*/
     var Clock = function(opt){
@@ -6,7 +8,7 @@
       }
       opt = $.extend(default_,opt);
       this.date = opt.date;
-      this.init();
+      //this.init();
     };
       
 
@@ -60,9 +62,10 @@
     Clock.prototype.deactivate = function(){
       this.date.classList.remove('showClock');
     };
+    window.Clock = Clock;
 
-    var oClock = new Clock({
-      date:document.querySelector('.date')
-    });
+}(window,undefined,jQuery);
+
+
 
 /*end Clock*/

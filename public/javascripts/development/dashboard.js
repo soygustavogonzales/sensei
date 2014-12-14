@@ -11,18 +11,17 @@
 
     var menu = function (e){
       var umbralWidth = screen.width - 5;
+      /*
       if (e.clientX < '5'&& e.clientY > '100' && e.clientY < '550'){
-        /*abrir panel izquierdo*/
         boxLeft.classList.add('show-left');
-        // show clock
         oClock.activate();
-      // left = 150px
       } 
       else if(e.clientX > '150'){
         boxLeft.classList.remove('show-left');
         oClock.deactivate();
 
       }
+      */
 
       if(e.clientX > umbralWidth && e.clientY > '100' && e.clientY < '550'){
         /*abrir panel derecho*/
