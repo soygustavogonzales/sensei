@@ -1,141 +1,13 @@
-  var circle = document.querySelector('.colores'),
-  tamano = document.querySelector('.tamano'),
+  var boxLeft = document.querySelector('.box-left'),
+  boxRight = document.querySelector('.box-right'),
   tamDiv = document.querySelectorAll('.tamano div'),
   div = document.querySelectorAll('.colores div'),
-  articleColores = document.querySelector('.colores-btn'),
-  circleEraser = document.querySelector('.eraser'),
-  divEraser = document.querySelectorAll('.eraser div'),
-  articleEraser = document.querySelector('.eraser-btn'),
-  boxLeft = document.querySelector('.box-left'),
-  boxRight = document.querySelector('.box-right'),
   superior = document.querySelector('.superior'),
   itemsRight = $('.box-right nav ul li'),//todos los items dentro del lateral rigth
   globo = $('.globo'),
   flechita = $('.globo .flechita');
 
-//  console.log(itemsRight)
 
-    var onAnimation = function(){
-      
-      document.removeEventListener('mousemove',menu,false)
-      circle.classList.remove('hide')
-      tamano.classList.remove('hide')
-      for (var i = div.length - 1; i >= 0; i--) {
-          div.item(i).classList.add('animar')
-          tamDiv.item(i)&&tamDiv.item(i).classList.add('animar-tam')
-      };
-      var timer = setTimeout(function(){
-        for (var i = div.length - 1; i >= 0; i--) {
-          div.item(i).classList.add('expand')
-          tamDiv.item(i)&&tamDiv.item(i).classList.add('expand-tam')
-        };
-      },750)
-      
-    }
-
-    var offAnimation = function(){
-      document.addEventListener('mousemove',menu,false)
-      circle.classList.add('hide')
-      tamano.classList.add('hide')
-      for (var i = div.length - 1; i >= 0; i--) {
-          div.item(i).classList.remove('animar')
-          tamDiv.item(i)&&tamDiv.item(i).classList.remove('animar-tam')
-      };
-      var timer = setTimeout(function(){
-        for (var i = div.length - 1; i >= 0; i--) {
-          div.item(i).classList.remove('expand')
-          tamDiv.item(i)&&tamDiv.item(i).classList.remove('expand-tam')
-        };
-      },10)
-      
-    }
-
-
-    
-    var animationRotationTamano = function (e){
-      //console.log("x: %d,y: %d",e.x,e.y)
-      if(e.x >= 90 && e.y >= 670){
-        tamano.classList.contains('rotar-tam-pause')&&tamano.classList.remove('rotar-tam-pause')
-        tamano.classList.contains('rotar-tam-reverse')&&tamano.classList.remove('rotar-tam-reverse')
-        !tamano.classList.contains('rotar-tam')&&tamano.classList.add('rotar-tam')
-      }
-      else if(e.x <= 5 && e.y <= 590){
-        tamano.classList.contains('rotar-tam-pause')&&tamano.classList.remove('rotar-tam-pause')
-        !tamano.classList.contains('rotar-tam')&&tamano.classList.add('rotar-tam')
-        !tamano.classList.contains('rotar-tam-reverse')&&tamano.classList.add('rotar-tam-reverse')
-      }
-      else{
-        !tamano.classList.contains('rotar-tam-pause')&&tamano.classList.add('rotar-tam-pause')
-      }
-    } 
-/**************************/
-/*Clock*/
-    var Clock = function(opt){
-      var default_ = {
-        date:null
-      }
-      opt = $.extend(default_,opt);
-      this.date = opt.date;
-      this.init();
-    };
-      
-
-    Clock.prototype.init = function(){
-
-      var cT = new Date(),
-          cD = cT.getDate(),
-          cH = cT.getHours(),
-          cM = cT.getMinutes(),
-          cS = cT.getSeconds(),
-          cA = cT.getFullYear();
-
-      cM = (cM < 10 ? '0' : '') + cM;
-      cS = (cS < 10 ? '0' : '') + cS;
-      cH = (cH > 12) ? cH - 12 : cH;
-      cH = (cH === 0) ? 12 : cH;
-      // get Clock
-      var clk = cH + ':' + cM;
-      
-      // array  days
-      var w = new Array(7);
-      w = [
-        'Domingo','Lunes','Martes',
-        'Miercoles','Jueves','Viernes','Sabado'];
-      
-      // get day
-      var day = w[cT.getDay()];
-      
-      // array months
-      var m = new Array(12);
-      m =[
-        'Enero','Febrero','Marzo',
-        'Abril','Mayo','Junio','Julio',
-        'Agosto','Septiembre','Octubre',
-        'Noviembre','Diciembre'];
-      // get Month
-      var month = m[cT.getMonth()];
-
-      // Render html
-      this.date.innerHTML = 
-        '<div class="clock">'+clk+'</div>'+
-        '<ul class="day">'+
-          '<li>'+day+'</li>'+
-          '<li>'+cD+' de '+month+'</li>'+
-        '</ul>';
-    };
-
-    Clock.prototype.activate = function(){
-      this.date.classList.add('showClock');
-    };
-    Clock.prototype.deactivate = function(){
-      this.date.classList.remove('showClock');
-    };
-
-    var oClock = new Clock({
-      date:document.querySelector('.date')
-    });
-
-/*end Clock*/
 
     var menu = function (e){
       var umbralWidth = screen.width - 5;
@@ -227,35 +99,9 @@
         },1550)
       }
     }
-    for (var i = div.length - 1; i >= 0; i--) {
-      div[i].onclick = function (){
-        console.log("click on color")
-        board.changeColor(this.querySelector('span').style.background)
-      }
-      div[i].onmouseover = function (){
-        var span = this.children;
-        var background = span[0].style.background;
-        for (var i = tamDiv.length - 1; i >= 0; i--) {
-          var span = tamDiv.item(i).children;
-          span[0].style.background = background
-        };
 
-      }
-    };
-    for (var i = tamDiv.length - 1; i >= 0; i--) {
-      tamDiv[i].onclick = function (){
-        console.log("click on tamano")
-      }
-    };
+
 
 document.addEventListener('mousemove',menu,false)
-articleColores.addEventListener('mouseenter',onAnimation,false)
-tamano.addEventListener('mouseleave',offAnimation,false)
-//articleEraser.addEventListener('mouseenter',onAnimationEraser,false)
-//.eraser-btn
-//circleEraser.addEventListener('mouseleave',offAnimationEraser,false)
-//.eraser
-//circleEraser.addEventListener('mousemove',animationRotationEraser,false)
-tamano.addEventListener('mousemove',animationRotationTamano,false)
 itemsRight.hover(showGlobo);
     
