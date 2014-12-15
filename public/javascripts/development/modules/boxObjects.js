@@ -15,6 +15,7 @@
 		this.box = opt.$box[0];
 		this.oPencil = opt.oPencil;
 		this.oClock = opt.oClock;
+		this.status = null;
 		//.init();
 	}
 
@@ -40,10 +41,14 @@
 	BoxObjects.prototype.enable = function(){
 		document.addEventListener('mousemove',this.controller.bind(this),false)
 		this.$box.mouseleave(this.oPencil.deactivateWrite.bind(this.oPencil))
+		this.$box.removeClass('hide')
+		this.status = true;
 	}
 	BoxObjects.prototype.disable = function(){
 		document.removeEventListener('mousemove',this.controller.bind(this),false)
 		this.$box.off('mouseleave',this.oPencil.deactivateWrite.bind(this.oPencil))
+		this.$box.addClass('hide')
+		this.status = false;
 	}
 	BoxObjects.prototype.controller = function(){
   if (event.clientX < this.umbrals.left&& event.clientY > this.umbrals.top && event.clientY < this.umbrals.bottom){
@@ -56,12 +61,23 @@
 	BoxObjects.prototype.open = function(){
 		this.box.classList.add('show-left');
 		this.oClock.activate();
-		//this.oEraser.disable()
+		if(this.oEraser.status){//si esta habilitado
+			this.oEraser.disable()
+		}
+		if(this.oPencil.status){//si esta habilitado
+			this.oPencil.disable()
+		}
 	}
 	BoxObjects.prototype.close = function(){
 		//console.log(this)
 		this.box.classList.remove('show-left');
 		this.oClock.deactivate();
+		if(!this.oEraser.status){//si esta deshabilitado
+			this.oEraser.enable()
+		}
+		if(!this.oPencil.status){//si esta deshabilitado
+			this.oPencil.enable()
+		}
 		//this.oEraser.enable()
 	}
 	//console.log(window.oPencil)

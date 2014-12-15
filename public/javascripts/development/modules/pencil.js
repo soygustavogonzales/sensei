@@ -24,6 +24,7 @@
 		this.circle = opt.circle;
 		this.$canvas = opt.$canvas;
 		this.boxObject = opt.boxObject;
+		this.status = null;
 		//this.init() 
 	}
 
@@ -39,9 +40,14 @@
 	Pencil.prototype.enable = function(){
 		this.$pencil.on("click",this.activateWrite.bind(this))
 		this.activateSelectColor();
+
+		this.articleColores.classList.contains('hide')&&this.articleColores.classList.remove('hide')
+		this.status = true;
 	}
 	Pencil.prototype.disable = function(){
 		this.$pencil.off("click",this.activateWrite.bind(this))
+		!this.articleColores.classList.contains('hide')&&this.articleColores.classList.add('hide')
+		this.status = false;
 	}
 	Pencil.prototype.activateSelectColor = function(){
 	    for (var i = this.div.length - 1; i >= 0; i--) {
