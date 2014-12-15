@@ -33,7 +33,7 @@
 				left:5,
 				right:right
 			}
-			console.log(this.umbrals)
+			//console.log(this.umbrals)
 		}
 		this.enable()
 	}

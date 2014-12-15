@@ -1,5 +1,4 @@
-  var boxLeft = document.querySelector('.box-left'),
-  boxRight = document.querySelector('.box-right'),
+var boxRight = document.querySelector('.box-right'),
   tamDiv = document.querySelectorAll('.tamano div'),
   div = document.querySelectorAll('.colores div'),
   superior = document.querySelector('.superior'),
@@ -11,18 +10,6 @@
 
     var menu = function (e){
       var umbralWidth = screen.width - 5;
-      /*
-      if (e.clientX < '5'&& e.clientY > '100' && e.clientY < '550'){
-        boxLeft.classList.add('show-left');
-        oClock.activate();
-      } 
-      else if(e.clientX > '150'){
-        boxLeft.classList.remove('show-left');
-        oClock.deactivate();
-
-      }
-      */
-
       if(e.clientX > umbralWidth && e.clientY > '100' && e.clientY < '550'){
         /*abrir panel derecho*/
         console.log("abrir derecha")
