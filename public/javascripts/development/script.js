@@ -23,15 +23,15 @@
 
 	whiteboard.on('object:selected', function(e) {
 		if(e.target){
-			l.log("SELECCIONASTE UN ELEMENTO")
-			l.log(e.target)
+			//l.log("SELECCIONASTE UN ELEMENTO")
+			//l.log(e.target)
 			rc.showAnimation()
 			//LANZAR EL RADIALCOLORS Y OPCIONES DE CONFIGURACION
 		}
 	});
 	whiteboard.on('mouse:down', function(e) {
 		if(!e.target){
-			l.log("SELECCIONASTE al vacio")
+			//l.log("SELECCIONASTE al vacio")
 			rc.ocultar()
 		}
 	});
@@ -299,7 +299,7 @@
 			left:opt.left,
 			shadow: opt.shadow
 		})
-		l.log(triangle)
+		//l.log(triangle)
 		canvas.add(triangle).renderAll()
 	}
 	

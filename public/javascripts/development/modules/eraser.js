@@ -87,7 +87,7 @@
       !this.eraser_.classList.contains('rotar-tam')&&this.eraser_.classList.add('rotar-tam')
       !this.eraser_.classList.contains('rotar-tam-running')&&this.eraser_.classList.add('rotar-tam-running')
       if(this.oBoxObject.status){
-        console.log("**offBoxObjects")
+      //console.log("**offBoxObjects")
         this.oBoxObject.disable()
       }
         
@@ -95,7 +95,7 @@
       !this.eraser_.classList.contains('rotar-tam-pause')&&this.eraser_.classList.add('rotar-tam-pause')
       this.eraser_.classList.contains('rotar-tam-running')&&this.eraser_.classList.remove('rotar-tam-running')
       if(!this.oBoxObject.status){
-        console.log("**onBoxObjects")
+        //console.log("**onBoxObjects")
         this.oBoxObject.enable()
       }
     }

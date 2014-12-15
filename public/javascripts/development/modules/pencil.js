@@ -52,7 +52,7 @@
 	Pencil.prototype.activateSelectColor = function(){
 	    for (var i = this.div.length - 1; i >= 0; i--) {
 	      this.div[i].onclick = function (){
-	        console.log("click on color")
+	        //console.log("click on color")
 	        board.changeColor(this.querySelector('span').style.background)
 	      }
 
