@@ -19,10 +19,18 @@
 	}
 
 	BoxObjects.prototype.init = function(opt){
-		if(opt){
+		if(typeof(opt)=="object"){
 			this.oPencil = opt.oPencil;
 			this.oClock = opt.oClock;
 			this.oEraser = opt.oEraser;
+			var top = parseInt(getComputedStyle(this.oEraser.eraser).height),
+			bottom = parseInt(getComputedStyle(document.documentElement).height)-parseInt(getComputedStyle(this.oPencil.articleColores).height),
+			right = parseInt(getComputedStyle(document.documentElement).width)
+			this.umbrals = {
+				top:top,
+				bottom:bottom,
+				left:5
+			}
 		}
 		this.enable()
 	}
@@ -36,10 +44,10 @@
 		this.$box.off('mouseleave',this.oPencil.deactivateWrite.bind(this.oPencil))
 	}
 	BoxObjects.prototype.controller = function(){
-  if (event.clientX < '5'&& event.clientY > '100' && event.clientY < '550'){
+  if (event.clientX < this.umbrals.left&& event.clientY > this.umbrals.top && event.clientY < this.umbrals.bottom){
 			this.open()
   } 
-  else if(event.clientX > '150'){
+  else if(event.clientX > '150'||event.clientY<this.umbrals.top || event.clientY > this.umbrals.bottom){
 			this.close()
 	 }
 	}
