@@ -23,14 +23,16 @@
 			this.oPencil = opt.oPencil;
 			this.oClock = opt.oClock;
 			this.oEraser = opt.oEraser;
-			var top = parseInt(getComputedStyle(this.oEraser.eraser).height),
-			bottom = parseInt(getComputedStyle(document.documentElement).height)-parseInt(getComputedStyle(this.oPencil.articleColores).height),
-			right = parseInt(getComputedStyle(document.documentElement).width)
+			var top = parseInt(getComputedStyle(this.oEraser.eraser_).height)-Math.abs(parseInt(getComputedStyle(this.oEraser.eraser_).marginTop)),
+			bottom = parseInt(getComputedStyle(document.documentElement).height)-(parseInt(getComputedStyle(this.oPencil.tamano).height)-Math.abs(parseInt(getComputedStyle(this.oPencil.tamano).bottom))),
+			right = parseInt(getComputedStyle(this.box).width);
 			this.umbrals = {
 				top:top,
 				bottom:bottom,
-				left:5
+				left:5,
+				right:right
 			}
+			console.log(this.umbrals)
 		}
 		this.enable()
 	}
@@ -47,7 +49,7 @@
   if (event.clientX < this.umbrals.left&& event.clientY > this.umbrals.top && event.clientY < this.umbrals.bottom){
 			this.open()
   } 
-  else if(event.clientX > '150'||event.clientY<this.umbrals.top || event.clientY > this.umbrals.bottom){
+  else if(event.clientX > this.umbrals.right||event.clientY<this.umbrals.top || event.clientY > this.umbrals.bottom){
 			this.close()
 	 }
 	}

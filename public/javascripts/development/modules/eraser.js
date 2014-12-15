@@ -45,9 +45,7 @@
   } 
   	
   Eraser.prototype.onAnimation = function(){
-  	//console.log(this)
-    //document.removeEventListener('mousemove',menu,false)
-    this.oBoxObject.disable()
+    //this.oBoxObject.disable()
     this.eraser_.classList.remove('hide')
     for (var i = this.divEraser.length - 1; i >= 0; i--) {
         this.divEraser.item(i).classList.add('animar')
@@ -73,7 +71,6 @@
     }
       
     var timer = setTimeout(offExpandAtn.bind(this),10)
-    //document.addEventListener('mousemove',menu,false)
   }
 
 
@@ -83,12 +80,12 @@
       !this.eraser_.classList.contains('rotar-tam')&&this.eraser_.classList.add('rotar-tam')
       !this.eraser_.classList.contains('rotar-tam-running')&&this.eraser_.classList.add('rotar-tam-running')
       console.log("**offBoxObjects")
-      this.oBoxObject.disable()
+      //this.oBoxObject.disable()
     }else{
       !this.eraser_.classList.contains('rotar-tam-pause')&&this.eraser_.classList.add('rotar-tam-pause')
       this.eraser_.classList.contains('rotar-tam-running')&&this.eraser_.classList.remove('rotar-tam-running')
       console.log("**onBoxObjects")
-      this.oBoxObject.enable()
+      //this.oBoxObject.enable()
     }
   	
   }

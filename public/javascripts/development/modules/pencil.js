@@ -158,7 +158,7 @@
  });
 
 	var oBoxObject = new BoxObjects({
-		$box:$('.box')
+		$box:$('.box-left')
 	});
 
 	var oPencil = new Pencil({
