@@ -24,8 +24,8 @@
 			this.oPencil = opt.oPencil;
 			this.oClock = opt.oClock;
 			this.oEraser = opt.oEraser;
-			var top = parseInt(getComputedStyle(this.oEraser.eraser_).height)-Math.abs(parseInt(getComputedStyle(this.oEraser.eraser_).marginTop)),
-			bottom = parseInt(getComputedStyle(document.documentElement).height)-(parseInt(getComputedStyle(this.oPencil.tamano).height)-Math.abs(parseInt(getComputedStyle(this.oPencil.tamano).bottom))),
+			var top = 120,//parseInt(getComputedStyle(this.oEraser.eraser_).height)-Math.abs(parseInt(getComputedStyle(this.oEraser.eraser_).marginTop)),
+			bottom = parseInt(getComputedStyle(document.documentElement).height)-100,
 			right = parseInt(getComputedStyle(this.box).width);
 			this.umbrals = {
 				top:top,
