@@ -64,25 +64,15 @@ var boxRight = document.querySelector('.box-right'),
         //globo.toggleClass('hide');
         globo.toggleClass('show');
         globo.toggleClass('addGloboAtn')
+        /*
+        */
         setTimeout(function(){
           globo.css({
-            'left':'70em'
+            'right':'7em'//o 98px = 14(font-size) * 7(em keyframes globoAnimation ver hoja de estilos) 
           })
         },1550)
       }else{
-        /*
-        if(!flechita.normalPosition){
-          flechita.css('top',flechita.normalTopPosition)
-          flechita.normalPosition = true
-        }
-        */
-          
-        globo.toggleClass('hide');
-        setTimeout(function(){
-          globo.css({
-            'left':'60em'
-          })
-        },1550)
+  
       }
     }
 

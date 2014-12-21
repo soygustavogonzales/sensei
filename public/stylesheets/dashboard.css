@@ -286,11 +286,11 @@ ul .buble-right{
   position: fixed;
   z-index: 6;
   top:2em;
-  left: 60em;
+  right: 10em;
 }
 .addGloboAtn {
-  -webkit-animation:globoAnimation 1.55s ease-in-out infinite;
-  animation:globoAnimation 1.55s ease-in-out infinite;
+  -webkit-animation:globoAnimation 1.55s ease-in-out;
+  animation:globoAnimation 1.55s ease-in-out;
 }
 .addOnRCAnimation {
   -webkit-animation:OnRCAnimation 1.55s ease-in-out;
@@ -479,12 +479,12 @@ ul .buble-right{
 @-webkit-keyframes globoAnimation {
   0% {
     opacity: 0;
-    left: 60em;
+    right: 8em;
   }
 
   100% {
     opacity: 1;
-    left: 70em;
+    right: 7em;
     box-shadow: -.6em .6em .6em #eee;
   }
 }
