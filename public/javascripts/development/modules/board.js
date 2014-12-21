@@ -122,3 +122,8 @@
 }(window,undefined,jQuery)
 
 
+
+var board = new Board({
+	firebaseURI:'https://senseiapp.firebaseio.com/rooms',
+	canvasId:'blackboard'
+});
