@@ -34,6 +34,7 @@
 		this.tamano.addEventListener('mousemove',this.onAnimationRotation.bind(this),false)
 		if(opt){
 			this.boxObject = opt.boxObject;
+			this.oBoard = opt.oBoard;
 		}
 		this.enable()
 	}
@@ -51,8 +52,9 @@
 	}
 	Pencil.prototype.activateSelectColor = function(){
 	    for (var i = this.div.length - 1; i >= 0; i--) {
+	    	var self = this
 	    		this.div[i].addEventListener('click',function(){
-	        board.changeColor(this.querySelector('span').style.background)
+	        self.oBoard.changeColor(this.querySelector('span').style.background)
 	    		},false);
 	    			
 	      this.div[i].addEventListener('mouseover',this.activatePreviewColor.bind(this,i),false);
@@ -84,7 +86,7 @@
 				})
 			}
 			this.$canvas.activate = true
-			board.activatedEraser = false;
+			this.oBoard.activatedEraser = false;
 	}
 		
 	Pencil.prototype.deactivateWrite = function(){

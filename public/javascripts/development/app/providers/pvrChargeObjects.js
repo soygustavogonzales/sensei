@@ -14,11 +14,17 @@ var chargeObject = function(){
 }
 
 chargeObject.prototype.chargeAll = function () {
-  /*atributos - no metodos*/
+
+  var oBoard = new Board({
+    firebaseURI:'https://senseiapp.firebaseio.com/rooms',
+    canvasId:'blackboard'
+  });
+  console.log(window.$canvas.activate)
   var oEraser = new Eraser({
     $eraser:$('.eraser-btn'),
     eraser_:document.querySelector('.eraser'),
-    divEraser:document.querySelectorAll('.eraser div')
+    divEraser:document.querySelectorAll('.eraser div'),
+    $canvas:window.$canvas
   });
 
   var oClock = new Clock({
@@ -28,7 +34,6 @@ chargeObject.prototype.chargeAll = function () {
   var oBoxObject = new BoxObjects({
     $box:$('.box-left')
   });
-
   var oPencil = new Pencil({
     $pencil:$('.pencil'),
       tamano:document.querySelector('.tamano'),
@@ -36,7 +41,7 @@ chargeObject.prototype.chargeAll = function () {
       div:document.querySelectorAll('.colores div'),
       articleColores:document.querySelector('.colores-btn'),
       circle:document.querySelector('.colores'),
-      $canvas : $('.pizarra')
+      $canvas : window.$canvas
   });
   var webrtc = new SimpleWebRTC({
     // the id/element dom element that will hold "our" video
@@ -56,7 +61,7 @@ chargeObject.prototype.chargeAll = function () {
   });
 
     oBoxObject.init({oPencil:oPencil,oClock:oClock,oEraser:oEraser})
-    oEraser.init({oBoxObject:oBoxObject})
-    oPencil.init({boxObject:oBoxObject})
+    oEraser.init({oBoxObject:oBoxObject,oBoard:oBoard})
+    oPencil.init({boxObject:oBoxObject,oBoard:oBoard})
     oClock.init()
 }

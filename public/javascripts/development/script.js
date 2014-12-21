@@ -308,6 +308,8 @@ $body.mousemove(draggableEle);
 $body.mouseup(dropableEle);
 
 
-//console.log(rc);
 //rc.showAnimation()
+window.$canvas = $canvas;
+console.log(window.$canvas);
+
 }(window,document,undefined,jQuery)

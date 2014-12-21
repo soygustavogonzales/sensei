@@ -5,28 +5,30 @@
 
   var Eraser = function(opt){
   	var default_ = {
-  		$eraser:null
-  	}
-  	opt = $.extend(default_, opt);
-  	this.$eraser = opt.$eraser;
+      $eraser:null
+    }
+    opt = $.extend(default_, opt);
+  	console.log(opt)
+    this.$eraser = opt.$eraser;
     this.eraser_ = opt.eraser_;
-  	this.$eraser_ = $(opt.eraser_);
-  	this.divEraser = opt.divEraser;
-  	this.eraser = opt.$eraser[0];
+    this.$eraser_ = $(opt.eraser_);
+    this.divEraser = opt.divEraser;
+    this.eraser = opt.$eraser[0];
+    this.$canvas = opt.$canvas;
     this.status = null;
 
-  	//this.init()
-  	//console.log(this)
+    //this.init()
   }
 
   Eraser.prototype.init = function(opt){
     if(opt){
       this.oBoxObject = opt.oBoxObject
+      this.oBoard = opt.oBoard
     }
     this.enable()
   }
   Eraser.prototype.enable = function(){
-    this.$eraser.on("click",this.activate)
+    this.$eraser.on("click",this.activate.bind(this))
     this.eraser.addEventListener('mouseenter',this.onAnimation.bind(this),false)
     this.eraser_.addEventListener('mouseleave',this.offAnimation.bind(this),false)
     this.eraser_.addEventListener('mousemove',this.animationRotation.bind(this),false)
@@ -34,7 +36,7 @@
     this.status = true;
   }
   Eraser.prototype.disable = function(){
-    this.$eraser.off("click",this.activate);  
+    this.$eraser.off("click",this.activate.bind(this));  
     this.eraser.removeEventListener('mouseenter',this.onAnimation.bind(this),false)
     this.eraser_.removeEventListener('mouseleave',this.offAnimation.bind(this),false)
     this.eraser_.removeEventListener('mousemove',this.animationRotation.bind(this),false)
@@ -42,13 +44,14 @@
     this.status = false;
   }
   Eraser.prototype.activate = function(){
-  		if(!$canvas.activate){//si esta desactivado
-  			$canvas.css({
+    console.log(this.$canvas)
+  		if(!this.$canvas.activate){//si esta desactivado
+  			this.$canvas.css({
   				'z-index':4
   			})
   		}
   		console.log("eraser activate")
-  		board.activatedEraser = true;
+  		this.oBoard.activatedEraser = true;
   } 
   	
   Eraser.prototype.onAnimation = function(){
