@@ -51,11 +51,10 @@
 	}
 	Pencil.prototype.activateSelectColor = function(){
 	    for (var i = this.div.length - 1; i >= 0; i--) {
-	      this.div[i].onclick = function (){
-	        //console.log("click on color")
+	    		this.div[i].addEventListener('click',function(){
 	        board.changeColor(this.querySelector('span').style.background)
-	      }
-
+	    		},false);
+	    			
 	      this.div[i].addEventListener('mouseover',this.activatePreviewColor.bind(this,i),false);
 
 	    };

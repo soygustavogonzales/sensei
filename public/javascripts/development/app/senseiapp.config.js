@@ -1,3 +1,4 @@
-senseiApp.config(['chargeObjectsProvider',function (co) {
+senseiApp.config(['chargeObjectsProvider','chargeEffectsProvider',function (co,ce) {
   co.oCharge.chargeAll()
+  ce.oCharge.chargeAll()
 }])
