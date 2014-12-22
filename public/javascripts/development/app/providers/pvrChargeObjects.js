@@ -2,7 +2,6 @@
 */
 senseiApp.provider('chargeObjects', [function () {
   this.oCharge = new chargeObject();  
-  console.log(this.oCharge)
   var self = this
   this.$get = [function() {
     return self.oCharge;
@@ -14,12 +13,22 @@ var chargeObject = function(){
 }
 
 chargeObject.prototype.chargeAll = function () {
+  /*
+  console.log(Nav)
+  console.log(Globo)
+  console.log(BoxMultimedia)
+  */
+  var oNav = new Nav({
+   superior:document.querySelector('.superior')
+  })
 
+
+  
   var oBoard = new Board({
     firebaseURI:'https://senseiapp.firebaseio.com/rooms',
     canvasId:'blackboard'
   });
-  console.log(window.$canvas.activate)
+  
   var oEraser = new Eraser({
     $eraser:$('.eraser-btn'),
     eraser_:document.querySelector('.eraser'),
@@ -60,6 +69,7 @@ chargeObject.prototype.chargeAll = function () {
 
   });
 
+    //oBoxMultimedia.init({oGlobo:oGlobo})
     oBoxObject.init({oPencil:oPencil,oClock:oClock,oEraser:oEraser})
     oEraser.init({oBoxObject:oBoxObject,oBoard:oBoard})
     oPencil.init({boxObject:oBoxObject,oBoard:oBoard})

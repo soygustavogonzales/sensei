@@ -8,7 +8,6 @@
       $eraser:null
     }
     opt = $.extend(default_, opt);
-  	console.log(opt)
     this.$eraser = opt.$eraser;
     this.eraser_ = opt.eraser_;
     this.$eraser_ = $(opt.eraser_);

@@ -2,7 +2,6 @@
 */
 senseiApp.provider('chargeEffects', [function () {
   this.oCharge = new chargeEffects();  
-  console.log(this.oCharge)
   var self = this
   this.$get = [function() {
     return self.oCharge;
