@@ -13,4 +13,8 @@ router.get('/blackboard', function(req, res) {
   res.render('index', { title: 'Sensei' });
 });
 
+router.get('/includes/:partial',function(req,res){
+	console.log(req.params.partial);
+	res.render(['includes/',req.params.partial].join(''))
+})
 module.exports = router;

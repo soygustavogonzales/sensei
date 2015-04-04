@@ -1,10 +1,14 @@
-#box-chat(ng-controller="ListMessage")
-  .title
-    marquee|hello listened me!
-  .buzon
-    .listMsjs
-      ul.messages
-        li(ng-repeat="(key,val) in messages")
-          div.buble(ng-class="metodo(val.user)")|{{val.message}}
-  .input-text
-    input(ng-model="message",placeholder="mi mensaje",ng-keypress="sendMessage($event)")
+div
+	|<style>
+	|	@import url("/stylesheets/css/development/includes/chat.css")
+	|</style>
+	#box-chat
+		.title
+			marquee|hello listened me!
+		.buzon
+			.listMsjs
+				ul.messages
+					li(ng-repeat="(key,val) in messages")
+						div.buble(ng-class="metodo(val.user)")|{{val.message}}
+		.input-text
+			input(ng-model="message",placeholder="mi mensaje",ng-keypress="sendMessage($event)")

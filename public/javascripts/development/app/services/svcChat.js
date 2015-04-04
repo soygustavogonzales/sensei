@@ -3,4 +3,5 @@ senseiApp.service('svcChat',['$firebase',function($firebase){
   this.sync = $firebase(ref)
   this.rooms = ref.child("rooms")
   this.firebase = $firebase
-}])
+}]);
+

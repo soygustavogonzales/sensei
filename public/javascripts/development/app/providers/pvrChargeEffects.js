@@ -27,12 +27,4 @@ chargeEffects.prototype.chargeAll = function () {
     position:'left'
   })
 
-  $('.listMsjs').slimScroll({
-    distance:'5px',
-    height:'17em',
-    width:'100%',
-    railVisible: false,
-    railOpacity: 0.1
-  })
-
 }
