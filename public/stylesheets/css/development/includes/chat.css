@@ -5,6 +5,7 @@ en este caso a drv-chat
   display: inline-block;
 }
 */
+/*
 #box-chat {
   position: absolute;
   bottom: -19.7em;
@@ -15,6 +16,11 @@ en este caso a drv-chat
   color: rgba(65,65,65,1);
   -webkit-transition: bottom .45s ease-in-out;
   transition: bottom .45s ease-in-out;
+}
+*/
+*{
+  box-sizing:border-box;
+  -webkit-user-select: none; 
 }
 #box-chat .title {
   background: rgba(21,217,118,.9);
@@ -35,7 +41,29 @@ en este caso a drv-chat
   height: 100%;
   padding: .5em .1em;
   background: rgba(250,252,240,1);
+  overflow-y:scroll;
+  box-shadow: inset -8px -1px 15px 3px rgba(245,245,245,1);
 }
+
+#box-chat .buzon .listMsjs::-webkit-scrollbar-track
+{
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+#box-chat .buzon .listMsjs::-webkit-scrollbar
+{
+  width: .5em;
+  margin-right: 1em;
+  background-color: transparent;
+}
+
+#box-chat .buzon .listMsjs::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  background-color: rgba(140,140,140,.9);
+}
+
 #box-chat .input-text {
   height: 2.4em;
   width: 100%;
@@ -49,17 +77,20 @@ en este caso a drv-chat
   height: 100%;
   color: rgba(126,116,116,1);
   outline: none;
+  border: none;
   font-family: 'Open Sans Condensed', sans-serif;
 }
 #box-chat .buzon .listMsjs .messages {
 
 }
+/*
 #box-chat:hover {
   bottom: -.3em;
   -webkit-transition: bottom .25s ease-in-out;
   transition: bottom .25s ease-in-out;
   
 }
+*/
 #box-chat:hover .input-text{
   display: block;
 }

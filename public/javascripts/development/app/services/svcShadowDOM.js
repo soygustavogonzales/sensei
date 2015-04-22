@@ -5,12 +5,14 @@ senseiApp.service('svcShadowDOM',['$http','$q','$compile',function($http,$q,$com
 				$http.get(urlDOM)
 				.then(function(response){
 							htmlDOM = $compile(response.data)($scope)[0]
-							console.log(htmlDOM);
+							//console.log(htmlDOM);
 				}, function(err){console.log(err.data)})
 				.then(function(data){
 								var Elemnt = Object.create(HTMLElement.prototype);
 								Elemnt.createdCallback = function() {
 								    var shadow = this.createShadowRoot();
+								    //console.log(shadow);
+								    //console.log(this));
 								    shadow.appendChild(htmlDOM);
 								};
 								try{

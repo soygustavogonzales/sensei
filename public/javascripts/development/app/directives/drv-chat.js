@@ -32,13 +32,15 @@ senseiApp.directive('drvChat',['svcChat','svcShadowDOM',function(svcChat,svcShad
 				svcShadowDOM.getShadowDOM('/includes/chat',iElm,$scope)
 				.then(function(html){
 						console.log(html);
+						/*
 						  $(html).find('.listMsjs').slimScroll({
 						    distance:'5px',
 						    height:'17em',
-						    width:'100%',
+						    width:'14em',
 						    railVisible: false,
 						    railOpacity: 0.1
 						  })
+						*/
 				})
 		}
 	}
